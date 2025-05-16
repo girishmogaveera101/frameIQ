@@ -19,7 +19,7 @@ export default function latestMovies() {
         try {
             const response = await fetch('/api/latestMovies'); // this hits the backend
             const resData = await response.json();
-            setLatestMovies(resData);
+            setLatestMovies(resData.reverse());
             console.log(resData)
         } catch (err) {
             console.error("Brooo something broke 🤕", err);
@@ -42,7 +42,7 @@ export default function latestMovies() {
                             backgroundSize: 'cover',
                             backgroundPosition: 'center'
                         }}
-                            key={index} className="min-w-[400px] h-[270px] flex hover:opa flex-col p-4 justify-end items-start hover:opacity-80 transition-opacity duration-300 bg-purple-700 rounded-xl flex items-center justify-center">
+                            key={index} className="min-w-[400px] h-[270px] flex hover:opa flex-col p-4 justify-end items-start hover:opacity-80 transition-opacity duration-300 bg-purple-700 rounded-xl">
                             <p className="font-bold text-4xl">{movie.title}</p>
                             <p className=" text-xl">rating : 8/10</p>
                         </div>
@@ -51,9 +51,6 @@ export default function latestMovies() {
                     <p>loading</p>
                 )}
             </div>
-            <center>
-                <button className="rounded h-15 text-xl mt-20 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Start the Game</button>
-            </center>
         </>
     )
 }

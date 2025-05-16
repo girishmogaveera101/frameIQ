@@ -2,23 +2,29 @@
 
 import React, { useState } from 'react'
 
+interface DataType {
+    title: string;
+}
 export default function navbar() {
 
 
 
-    const [songName, setSongName] = useState("");
+    const [movieTitle, setMovieTitle] = useState<DataType[]>([]);
 
     const searchSong = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Song name : ", songName)
+        console.log("Song name : ", movieTitle)
 
-        const response = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(songName)}&limit=1`);
-        // interface resData{
-        //     results : 
-        // }
-        const resData = (await response).json();
+        const response = await fetch("/api/allMovies", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title: movieTitle }),
+        });
+        const resData = await response.json();
         console.log(resData);
-        // console.log(resData)
+        setMovieTitle(resData);
 
     }
     return (
@@ -29,7 +35,7 @@ export default function navbar() {
                 <p className='font-bold'>contribute</p>
                 <div>
                     <form onSubmit={searchSong}>
-                        <input type="text" className="border text-white pl-3 mr-2" value={songName} onChange={(e) => { setSongName(e.target.value) }} placeholder='Search a movie' />
+                        <input type="text" className="border text-white pl-3 mr-2" value={movieTitle} onChange={(e) => { setMovieTitle(e.target.value) }} placeholder='Search a movie' />
                         <input type='submit' className='bg-white text-sxl rounded text-purple-700  w-25' value="submit" />
                     </form>
                 </div>

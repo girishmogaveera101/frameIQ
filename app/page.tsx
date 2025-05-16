@@ -12,6 +12,9 @@ export default function Home() {
     </h1>
     <LatestMovies />
 
+    <center>
+      <button className="rounded h-15 text-xl mt-20 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Start the Game</button>
+    </center>
 
   </>
   );
