@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     if (existingMovie) {
       return NextResponse.json({
         success: true,
-        message: "Movie found in DB 📀",
+        message: "Movie found",
         data: existingMovie
       }, { status: 200 });
     }
@@ -29,13 +29,13 @@ export async function POST(req: Request) {
     // If not found, return that info
     return NextResponse.json({
       success: false,
-      message: "Movie not found 🕵️",
+      message: "Movie not found",
       data: null
     }, { status: 404 });
 
   } catch (err) {
-    console.error("Mongo tripped on a rock 💥", err);
-    return NextResponse.json({ error: "Internal server error 😵" }, { status: 500 });
+    console.error("Mongo error", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 

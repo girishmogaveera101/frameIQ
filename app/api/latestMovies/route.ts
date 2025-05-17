@@ -11,7 +11,7 @@ export async function GET() {
 
     return NextResponse.json(data); // Must return NextResponse
   } catch (error) {
-    console.error("BROKE BACKEND 💥", error);
+    console.error("BROKE BACKEND", error);
     return NextResponse.json(
       { error: "Backend exploded" }, 
       { status: 500 }

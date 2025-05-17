@@ -19,7 +19,7 @@ export default function latestMovies() {
         try {
             const response = await fetch('/api/latestMovies'); // this hits the backend
             const resData = await response.json();
-            setLatestMovies(resData.reverse());
+            setLatestMovies(resData);
             console.log(resData)
         } catch (err) {
             console.error("Brooo something broke 🤕", err);
