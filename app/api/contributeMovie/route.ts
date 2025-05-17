@@ -3,22 +3,19 @@ import clientPromise from "@/lib/mongodb";
 
 export async function POST(req: Request) {
   try {
-    const { title } = await req.json();
-    // const { title } = body;
-    if (!title) {
+    const { title, imageURL, rating } = await req.json();
+    if (!title || !imageURL || !rating)  {
       return NextResponse.json({ error: "movie title is empty" }, { status: 400 });
     }
-    // mongodb connection
+    console.log("inputs recieved")
     const client = await clientPromise;
     const db = client.db("frameFlix");
-    const existingMovie = await db.collection("movieTitle").find({
-      title: { $regex: `^${title}`, $options: "i" }
-    }).limit(5).toArray();
-    if (existingMovie) {
-      return NextResponse.json({ existingMovie }, { status: 200 });
+    const newMovie = await db.collection("latestMovies").insertOne({title,imageURL,rating})
+    if (newMovie) {
+      return NextResponse.json({ newMovie }, { status: 200 });
     }
     return NextResponse.json({
-      message: "Movie not found"
+      message: "Movie not inserted"
     }, { status: 404 });
   }
   catch (err) {

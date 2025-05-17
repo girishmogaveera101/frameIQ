@@ -6,25 +6,14 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db("frameFlix");
     const data = await db.collection("latestMovies").find({}).toArray();
-
-    console.log("Fetched from Mongo:", data);
-
-    return NextResponse.json(data); // Must return NextResponse
-  } catch (error) {
-    console.error("BROKE BACKEND", error);
+    console.log("Fetched movies :", data);
+    return NextResponse.json(data);
+  }
+  catch (error) {
+    console.error("Could not fetch the movies", error);
     return NextResponse.json(
-      { error: "Backend exploded" }, 
+      { error: "could not fetch the movies" },
       { status: 500 }
     );
   }
 }
-
-
-// import { NextResponse } from "next/server";
-
-// export async function GET() {
-//   // your fetch / db logic here
-//   const data = {_id:'3232', title: "avatar" };
-
-//   return NextResponse.json(data);
-// }
