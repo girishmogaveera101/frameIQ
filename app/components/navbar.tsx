@@ -41,7 +41,7 @@ export default function navbar() {
 
     return (
         <div className='w-full text-white h-16 flex md:flex-row items-center bg-purple-800 '>
-            <p className='w-[60%] ml-30 font-bold text-2xl pl-3 pr-10'>FrameFlix</p>
+            <p className='w-[60%] ml-30 font-bold text-2xl pl-3 pr-10'>Frame.IQ</p>
             <div className=' w-[40%] align-right  flex justify-evenly'>
                 <Link href='/'>
                     <p className='font-bold'>Home</p>
@@ -66,7 +66,7 @@ export default function navbar() {
                         </div>
                     </div>
                     <input type='submit' className='bg-white font-bold text-sxl rounded text-purple-700  w-25
-                        hover:bg-black hover:text-white transition-all duration-700 hover:border-black border-2' value="submit" />
+                        hover:bg-black hover:text-white transition-all duration-700 hover:border-black border-2' value="Find?" />
                 </div>
             </div>
             <div>

@@ -45,7 +45,7 @@ export default function latestMovies() {
                       >
                         {/* Background Image Layer */}
                         <div
-                          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-120"
                           style={{
                             backgroundImage: `url(${movie.imageURL})`,
                           }}
