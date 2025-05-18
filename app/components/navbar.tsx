@@ -40,9 +40,9 @@ export default function navbar() {
 
 
     return (
-        <div className='w-full text-white h-16 flex md:flex-row items-center bg-purple-800 '>
-            <p className='w-[60%] ml-30 font-bold text-2xl pl-3 pr-10'>Frame.IQ</p>
-            <div className=' w-[40%] align-right  flex justify-evenly'>
+        <div className='w-full fixed top-0 text-white h-16 flex md:flex-row items-center bg-purple-800 '>
+            <p className='md:w-[60%] w-full md:ml-30 text-center md:text-left font-bold text-2xl md:pl-3 md:pr-10'>Frame.IQ</p>
+            <div className=' w-[40%] align-right  md:flex justify-evenly hidden'>
                 <Link href='/'>
                     <p className='font-bold'>Home</p>
                 </Link>
