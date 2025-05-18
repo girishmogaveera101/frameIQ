@@ -3,80 +3,55 @@
 import Navbar from './components/navbar';
 import react, { useState, useEffect } from 'react'
 import LatestMovies from './components/latestMovies'
+const token = process.env.NEXT_PUBLIC_TMDB_URI;
 
-interface Poster {
-  file_path: string;
-  // height: number;
-  // width: number;
-  // iso_639_1: string;
-  // vote_average: number;
-  // vote_count: number;
-  // aspect_ratio: number;
-}
 
 interface MovieData {
-  id: number;
   backdrops: any[];
-  success: boolean;
+  file_path: string;
 }
-
-interface f2 {
-  name: string;
-}
-
-interface m2 {
-  belongs_to_collection: f2[];
-}
-
 
 
 export default function Home() {
-
   const [movie, setMovie] = useState<MovieData | null>(null);
   const [nu, setNu] = useState<number>(100)
-
   const [imageURL, setImageURL] = useState<string>("")
   const [title, setTitle] = useState<string>("");
 
   const f2 = async () => {
-    const randomNumber = Math.floor(Math.random() * 500 + 100);
+    const randomNumber = Math.floor(Math.random() * 500 + 500);
     setNu(randomNumber)
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${nu}/images`,
-      {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMzBiOGJhZjE4MjUyN2Q5OTFiODM3MGMwZDRmNThkOCIsIm5iZiI6MTc0NzU0NzA0Ni4yMTgsInN1YiI6IjY4Mjk3M2E2ZWFlYjUzNjBiY2RiMjRkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._QxSZR-AarUGSnloFaAtYA7sSsP6qojMzXq4-1U6A0I'
-        }
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${nu}/images`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${token}`,
       }
+    }
+    );
+    const res2 = await fetch(`https://api.themoviedb.org/3/movie/${nu}?language=en-US`, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+    }
     );
 
     const resData = await res.json();
     setMovie(resData)
-
-    console.log(resData)
-    setImageURL(`https://image.tmdb.org/t/p/original${resData.backdrops[6].file_path}`);
-  }
-
-
-  const f3 = async () => {
-    console.log("called")
-    const randomNumber = Math.floor(Math.random() * 500 + 100);
-    setNu(randomNumber)
-    const res2 = await fetch(`https://api.themoviedb.org/3/movie/${nu}?language=en-US`,
-      {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMzBiOGJhZjE4MjUyN2Q5OTFiODM3MGMwZDRmNThkOCIsIm5iZiI6MTc0NzU0NzA0Ni4yMTgsInN1YiI6IjY4Mjk3M2E2ZWFlYjUzNjBiY2RiMjRkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._QxSZR-AarUGSnloFaAtYA7sSsP6qojMzXq4-1U6A0I'
-        }
-      }
-    );
-
+    setImageURL(`https://image.tmdb.org/t/p/original${resData.backdrops[0].file_path}`);
     const resData2 = await res2.json();
     setTitle(resData2.title)
-    console.log(resData2)
-    console.log(title)
+    console.log("Image Data",resData)
+    console.log("Info : ",resData2)
+    console.log("title : ",resData2.title)
+    console.log("Release Date : ",resData2.release_date)
+    console.log("desrcption : ",resData2.overview)
+    console.log("Budget : ",resData2.budget)
+    console.log("IMDB rating : ",resData2.vote_average)
+
+
 
   }
 
@@ -92,7 +67,7 @@ export default function Home() {
     <LatestMovies />
 
     <center>
-      <button onClick={(e) => { f2(),f3() }} className="rounded h-15 text-xl mt-10 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Start the Game</button>
+      <button onClick={(e) => { f2() }} className="rounded h-15 text-xl mt-10 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Start the Game</button>
     </center>
     <div>
       {imageURL && (
