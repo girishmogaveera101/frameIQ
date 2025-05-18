@@ -14,7 +14,6 @@ interface MovieData {
 
 export default function Home() {
 
-  console.log(token)
   const [movie, setMovie] = useState<MovieData | null>(null);
   const [nu, setNu] = useState<number>(100)
   const [imageURL, setImageURL] = useState<string>("")
