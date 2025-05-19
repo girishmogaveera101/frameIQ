@@ -3,14 +3,14 @@ import clientPromise from "@/lib/mongodb";
 
 export async function POST(req: Request) {
   try {
-    const { title, imageURL, rating } = await req.json();
+    const { title, imageURL, rating, description, releaseDate, director,username } = await req.json();
     if (!title || !imageURL || !rating)  {
-      return NextResponse.json({ error: "movie title is empty" }, { status: 400 });
+      return NextResponse.json({ error: "movie details are empty" }, { status: 400 });
     }
     console.log("inputs recieved")
     const client = await clientPromise;
     const db = client.db("frameFlix");
-    const newMovie = await db.collection("latestMovies").insertOne({title,imageURL,rating})
+    const newMovie = await db.collection("latestMovies").insertOne({title,imageURL,rating,description, releaseDate, director, username})
     if (newMovie) {
       return NextResponse.json({ newMovie }, { status: 200 });
     }
