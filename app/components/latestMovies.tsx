@@ -9,6 +9,7 @@ interface DataType {
   rating: number;
   director: string;
   username: string;
+  releaseDate:string;
 }
 export default function latestMovies() {
 
@@ -63,8 +64,8 @@ export default function latestMovies() {
               </div>
               <div className='flex flex-row'>
                 <div className="relative  z-10 text-white">
-                  <p className="md:text-2xl text-xs">rating: {movie.rating ? movie.rating : 7.5}/10</p>
-                  <p className="md:text-2xl text-xs">{movie.director ? movie.director : "  -"}</p>
+                  <p className="md:text-2xl text-xs">rating: {movie.rating ? movie.rating.toFixed(1) : "NaN"}/10</p>
+                  <p className="md:text-2xl text-xs">{movie.releaseDate ? movie.releaseDate.slice(0,4) : "  -"}</p>
 
                 </div>
                 <div className="relative w-45 z-10 md:w-95 items-end text-white flex flex-col justify-end">

@@ -15,7 +15,7 @@ export default function Home() {
 
     // const [movie, setMovie] = useState<MovieData | null>(null);
     const [imageURL, setImageURL] = useState<string>("")
-    const [title, setTitle] = useState<string>("");
+    const [title, setTitle] = useState<string>("-");
     const [director, setDirector] = useState<string>("");
     const [releaseDate, setReleaseDate] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -28,6 +28,10 @@ export default function Home() {
 
 
     const handleClick = async () =>{
+        if(title==""){
+            alert("Empty Data")
+            return;
+        }
         const response = await fetch("/api/contributeMovie", {
             method: "POST",
             headers: {
@@ -53,6 +57,7 @@ export default function Home() {
 
     const f2 = async () => {
         const randomNumber = Math.floor(Math.random() * 50000);
+        // alert(username)
 
         try {
             const [imageRes, infoRes] = await Promise.all([
@@ -70,6 +75,7 @@ export default function Home() {
                 })
             ]);
 
+            alert(username)
 
             if (!imageRes.ok || !infoRes.ok) {
                 console.warn(`Invalid ID: ${randomNumber}. Retrying...`);
@@ -92,6 +98,7 @@ export default function Home() {
             // setMovie(imageData);
             setTitle(infoData.title);
             setReleaseDate(infoData.release_date)
+            // setDirector(infoData.director)
             setDescription(infoData.overview)
             setRating(infoData.vote_average)
 
