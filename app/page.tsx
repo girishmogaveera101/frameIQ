@@ -23,6 +23,10 @@ export default function Home() {
       <Link href='/webContribute'>
         <button className="rounded h-15 text-xl mt-10 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Web Contribute</button>
       </Link>
+<br/>
+      <Link href='/mainUpload'>
+        <button className="rounded h-15 text-xl mt-10 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Main Upload</button>
+      </Link>
     </center>
 
   </>
