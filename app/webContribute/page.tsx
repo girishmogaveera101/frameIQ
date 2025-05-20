@@ -124,7 +124,7 @@ export default function Home() {
 
     return (<>
 
-        <Navbar />
+        {/* <Navbar /> */}
 
         <center>
             <button onClick={(e) => { f2() }} className="rounded h-15 text-xl mt-20 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black">Next Frame</button>

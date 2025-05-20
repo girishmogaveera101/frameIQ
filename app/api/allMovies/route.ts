@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     // mongodb connection
     const client = await clientPromise;
     const db = client.db("frameFlix");
-    const existingMovie = await db.collection("movieTitle").find({
+    const existingMovie = await db.collection("latestMovies").find({
       title: { $regex: `^${title}`, $options: "i" }
     }).limit(5).toArray();
     if (existingMovie) {

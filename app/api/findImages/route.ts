@@ -16,7 +16,7 @@ export async function POST(req: Request) {
             }
         );
     const resData = await response.json();
-    return NextResponse.json(resData, { status: 200 });
+    return NextResponse.json(resData.backdrops, { status: 200 });
   }
   
   catch (err) {
