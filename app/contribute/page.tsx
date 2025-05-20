@@ -38,6 +38,7 @@ function page() {
             alert("ID is null")
             return;
         }
+        setImgURLS([]);
         const infoRes = await fetch("/api/findMovieData", {
             method: "POST",
             headers: {
