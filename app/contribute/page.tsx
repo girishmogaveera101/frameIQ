@@ -100,7 +100,11 @@ function page() {
                 username: username
             })
         const imageData = await imageRes.json();
-        for (let i = 0; i < 50; i++) {
+        if(!imageData){
+            alert("Error");
+            return;
+        }
+        for (let i = 0; i < imageData.length; i++) {
             setImgURLS((prev) => [...prev, imageData[i].file_path])
         }
     }
@@ -189,7 +193,7 @@ function page() {
                 <div className="flex bg-black md:mt-0 py-2 items-center justify-center text-white flex-row flex-wrap">
                     {idArray.map((id, index) => (
                         <div onClick={(e) => { setidNumber(id),getMovieData }}
-                            className="border-[rgb(122,122,122)] active:bg-purple-400 hover:bg-purple-400 transition-all duration-700 hover:text-black border-1 md:p-5 md:mx-8 m-2">
+                            className="border-[rgb(122,122,122)] active:bg-purple-400 hover:bg-purple-400 transition-all duration-700 hover:text-black border-1 md:p-5 md:mx-8 m-2 cursor-pointer">
                             <p  key={index} className="m-1 font-extrabold md:text-xl text-xs">{movieName[index].slice(0, 20)}</p>
                         </div>
 
@@ -202,7 +206,7 @@ function page() {
                             {/* <p className="text-white">{index}</p> */}
                             <img onClick={(e) => { setMovieData((prev) => ({ ...prev, imageURL: `https://image.tmdb.org/t/p/original${img}` })) }}
                                 key={index} src={`https://image.tmdb.org/t/p/original${img}`}
-                                alt="" className=" w-[90%] m-5 h-auto" />
+                                alt="" className=" w-[90%] m-5 h-auto cursor-pointer" />
                         </div>
                     ))}
                 </div>
