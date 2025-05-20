@@ -32,14 +32,14 @@ function page() {
 
     const [movieData, setMovieData] = useState<MovieType>();
     const [pageNumber, setPageNumber] = useState<number>(1);
-    const [idNumber, setidNumber] = useState<number>();
+    const [idNumber, setidNumber] = useState<number>(533535);
     const [idArray, setidArray] = useState<number[]>([]);
     const [movieName, setMovieName] = useState<string[]>([]);
     const [imgURLS, setImgURLS] = useState<string[]>([]);
 
     useEffect(() => {
-        // getid();
-        // getMovieData();
+        getid();
+        getMovieData();
 
     }, [])
 
@@ -114,7 +114,6 @@ function page() {
             alert("Error")
             return;
         }
-        alert("ok")
         const response = await fetch('/api/contributeMovie', {
             method: "POST",
             headers: {
@@ -125,6 +124,8 @@ function page() {
         const resData = await response.json();
         console.log(movieData)
         console.log(resData)
+        alert("Inserted to database")
+
     }
 
     return (
@@ -192,8 +193,8 @@ function page() {
 
                 <div className="flex bg-black md:mt-0 py-2 items-center justify-center text-white flex-row flex-wrap">
                     {idArray.map((id, index) => (
-                        <div onClick={(e) => { setidNumber(id),getMovieData }}
-                            className="border-[rgb(122,122,122)] active:bg-purple-400 hover:bg-purple-400 transition-all duration-700 hover:text-black border-1 md:p-5 md:mx-8 m-2 cursor-pointer">
+                        <div onClick={(e) => { setidNumber(id),getMovieData() }}
+                            className="border-[rgb(122,122,122)] active:bg-purple-400 hover:bg-purple-400 transition-all duration-300 hover:text-black border-1 md:p-5 md:mx-8 m-2 cursor-pointer">
                             <p  key={index} className="m-1 font-extrabold md:text-xl text-xs">{movieName[index].slice(0, 20)}</p>
                         </div>
 
@@ -206,7 +207,7 @@ function page() {
                             {/* <p className="text-white">{index}</p> */}
                             <img onClick={(e) => { setMovieData((prev) => ({ ...prev, imageURL: `https://image.tmdb.org/t/p/original${img}` })) }}
                                 key={index} src={`https://image.tmdb.org/t/p/original${img}`}
-                                alt="" className=" w-[90%] m-5 h-auto cursor-pointer" />
+                                alt="" className=" w-[90%] m-5 h-auto cursor-pointer hover:scale-110" />
                         </div>
                     ))}
                 </div>

@@ -89,7 +89,7 @@ export default function Home() {
                     <div className=" md:p-2 flex flex-col justify-center items-center w-full">
                         <div className='md:border-6 md:mt-5 border-white rounded-[30px] overflow-hidden md:w-[95%] h-[70%] md:h-[90%]'>
                             <img src={movie?.imageURL}
-                                className=' text-black inset-0 h-full w-full transition-all duration-1000 hover:scale-108' alt="image" />
+                                className=' text-black inset-0 h-full w-full transition-all duration-300 hover:scale-120' alt="image" />
                         </div>
                         <div className=" flex flex-row md:flex-nowrap h-[30%] md:h-[10%] justify-end mt-4">
                             <div className='flex'>
@@ -107,13 +107,13 @@ export default function Home() {
                                     setMovieTitle(e.target.value);
                                 }}
                                 placeholder='Enter the Movie Title'
-                                className='md:border-6 pl-4  md:border-white w-[100%] bg-purple-700 md:bg-white font-extrabold md:h-15 h-10 md:text-2xl text-xs md:w-150 m-2 text-white md:text-black ' />
+                                className='md:border-6 pl-4 rounded-xl  md:border-white w-[100%] bg-purple-700 md:bg-white font-extrabold md:h-15 h-10 md:text-2xl text-xs md:w-150 m-2 text-white md:text-black ' />
                             <button onClick={checkAnswer}
                                 className='text-white bg-black m-2 md:h-15 h-10 w-30 font-extrabold md:text-2xl text-xs mb-10 transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
                                 Submit
                             </button>
                             <button onClick={handleSearch}
-                                className='text-white mb-10 bg-black m-2 md:h-15 h-10 w-40 font-extrabold md:text-2xl text-xs transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
+                                className='text-white mb-10  bg-black m-2 md:h-15 h-10 w-40 font-extrabold md:text-2xl text-xs transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
                                 Next Frame
                             </button>
                         </div>

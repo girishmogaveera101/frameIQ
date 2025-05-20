@@ -40,14 +40,16 @@ export default function navbar() {
 
     return (
         <div className='w-full z-10 fixed top-0 text-white h-16 flex md:flex-row items-center bg-purple-800 '>
-            <p className='md:w-[60%] w-full md:ml-30 ml-10 text-left md:text-left font-bold text-2xl md:pl-3 md:pr-10'>Frame.IQ</p>
+            <p className='md:w-[60%] w-full bg-gradient-to-r from-white via-black bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl md:pl-3 md:pr-10'>
+                Frameiq
+            </p>
             <div className=' w-[40%] align-right  md:flex justify-evenly hidden'>
                 <Link href='/'>
-                    <p className='font-bold'>Home</p>
+                    <p className='font-bold hover:text-black transition-all duration-200'>Home</p>
                 </Link>
-                <p className='font-bold'>login</p>
+                <p className='font-bold hover:text-black transition-all duration-200'>login</p>
                 <Link href="/contribute">
-                    <p className='font-bold'>contribute</p>
+                    <p className='font-bold hover:text-black transition-all duration-200'>contribute</p>
                 </Link>
                 <div className='flex'>
                     <div className="flex flex-col">
@@ -64,7 +66,7 @@ export default function navbar() {
                             ))}
                         </div>
                     </div>
-                    <input type='submit' className='bg-white font-bold text-sxl rounded text-purple-700  w-25
+                    <input type='submit' className='bg-white hidden font-bold text-sxl rounded text-purple-700  w-25
                         hover:bg-black hover:text-white transition-all duration-700 hover:border-black border-2' value="Find?" />
                 </div>
                 <div className="">
