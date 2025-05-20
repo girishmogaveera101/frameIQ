@@ -13,6 +13,12 @@ interface MovieType {
     username?: string;
 }
 
+interface IDItem {
+    id: number;
+    title: string;
+  }
+  
+
 function page() {
 
     const [username, setUsername] = useState<string>("admin");
@@ -48,7 +54,7 @@ function page() {
             },
             body: JSON.stringify({ pageNumber }),
         });
-        const resData = await response.json();
+        const resData = await response.json() as { id: number; title: string }[];
         console.log(resData)
         const newIds = resData.map((item) => item.id);
         const newTitles = resData.map((item) => item.title);
