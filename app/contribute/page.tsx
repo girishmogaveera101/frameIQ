@@ -207,7 +207,7 @@ function page() {
                             {/* <p className="text-white">{index}</p> */}
                             <img onClick={(e) => { setMovieData((prev) => ({ ...prev, imageURL: `https://image.tmdb.org/t/p/original${img}` })) }}
                                 key={index} src={`https://image.tmdb.org/t/p/original${img}`}
-                                alt="" className=" w-[90%] m-5 h-auto cursor-pointer hover:scale-110" />
+                                alt="" className=" w-[90%] m-5 h-auto transition-all duration-300 cursor-pointer hover:scale-110" />
                         </div>
                     ))}
                 </div>

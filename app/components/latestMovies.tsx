@@ -37,7 +37,7 @@ export default function latestMovies() {
 
   return (
     <>
-      <p className='text-[rgb(80,80,80)] mt-10 text-xl md:text-2xl text-center md:text-left font-bold md:ml-50 '>Latest contributes</p>
+      <p className='text-[rgb(80,80,80)] mt-10 md:mt-0 text-xl md:text-2xl text-center md:text-left font-bold md:ml-50 '>Latest contributes</p>
       <div className="mt-5 w-[100%] ml-[0%] md:h-130 h-60  bg-[rgb(0,0,0)] flex overflow-x-auto overflow-y-hidden items-center space-x-4 p-4">
         {latestMovies.length - 1 > 0 ? (
           latestMovies.map((movie, index) => (
