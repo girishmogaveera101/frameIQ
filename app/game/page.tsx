@@ -91,12 +91,12 @@ export default function Home() {
                             <img src={movie?.imageURL}
                                 className=' text-black inset-0 h-full w-full transition-all duration-1000 hover:scale-108' alt="image" />
                         </div>
-                        <div className="flex flex-row md:flex-nowrap flex-wrap h-[30%] md:h-[10%] mt-4">
+                        <div className=" flex flex-row md:flex-nowrap h-[30%] md:h-[10%] justify-end mt-4">
                             <div className='flex'>
                                 <div className="flex flex-col">
-                                    <div className="absolute mt-19 ml-2 w-100  bg-black" >
+                                    <div className="absolute md:mt-19 mt-14 ml-2  w-45 md:w-100  bg-black" >
                                         {movies.map((movie, index) => (
-                                            <p className='text-[rgb(217,160,255)] bg-red m-3 text-xl' style={{ display: hideBarStatus }} key={index} onClick={() => { setMovieTitle(movie.title); setHideBarStatus("hidden") }}>{movie.title}</p>
+                                            <p className='text-[rgb(217,160,255)] bg-red m-3 md:text-xl text-xs' style={{ display: hideBarStatus }} key={index} onClick={() => { setMovieTitle(movie.title); setHideBarStatus("hidden") }}>{movie.title}</p>
                                         ))}
                                     </div>
                                 </div>
@@ -107,14 +107,14 @@ export default function Home() {
                                     setMovieTitle(e.target.value);
                                 }}
                                 placeholder='Enter the Movie Title'
-                                className='border-6 pl-4 border-white bg-white font-extrabold md:h-15 h-10 md:text-2xl text-xl md:w-150 m-2 text-black ' />
-                            <button onClick={handleSearch}
-                                className='text-white bg-black m-2 md:h-15 h-10 w-40 font-extrabold md:text-2xl text-xl transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
-                                Next Frame
-                            </button>
+                                className='md:border-6 pl-4  md:border-white w-[100%] bg-purple-700 md:bg-white font-extrabold md:h-15 h-10 md:text-2xl text-xs md:w-150 m-2 text-white md:text-black ' />
                             <button onClick={checkAnswer}
-                                className='text-white bg-black m-2 md:h-15 h-10 w-30 font-extrabold md:text-2xl text-xl mb-10 transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
+                                className='text-white bg-black m-2 md:h-15 h-10 w-30 font-extrabold md:text-2xl text-xs mb-10 transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
                                 Submit
+                            </button>
+                            <button onClick={handleSearch}
+                                className='text-white mb-10 bg-black m-2 md:h-15 h-10 w-40 font-extrabold md:text-2xl text-xs transition-all duration-300 hover:bg-purple-800 rounded-[6px]'>
+                                Next Frame
                             </button>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ export default function Home() {
                     <div className="md:w-[70%] mt-5 w-full h-50 shadow-2xl shadow-gray-700 rounded-[30px] bg-purple-700 ml-[2%] md:h-120 p-3">
 
                     </div>
-                    <div className="md:w-[70%] w-full  h-20shadow-2xl shadow-gray-700 rounded-[30px] bg-purple-700 ml-[2%] md:h-45 mt-15 p-3">
+                    <div className="md:w-[70%] w-full mb-10 h-30 shadow-2xl shadow-gray-700 rounded-[30px] bg-purple-700 ml-[2%] md:h-45 mt-15 p-3">
 
                     </div>
 
