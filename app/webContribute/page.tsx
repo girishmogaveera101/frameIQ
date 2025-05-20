@@ -27,8 +27,10 @@ export default function Home() {
 
 
 
-    const handleClick = async () =>{
-        if(title==""){
+
+
+    const handleClick = async () => {
+        if (title == "-") {
             alert("Empty Data")
             return;
         }
@@ -42,10 +44,10 @@ export default function Home() {
                     title: title,
                     imageURL: imageURL,
                     rating: rating,
-                    description:description,
-                    releaseDate:releaseDate,
-                    director:director,
-                    username:username
+                    description: description,
+                    releaseDate: releaseDate,
+                    director: director,
+                    username: username
 
                 }
             )
@@ -55,38 +57,36 @@ export default function Home() {
     }
 
 
+    // useEffect(()=>{
+    //     f2();
+    // },[ran])
+
     const f2 = async () => {
         const randomNumber = Math.floor(Math.random() * 50000);
         // alert(username)
 
+
+
         try {
-            const [imageRes, infoRes] = await Promise.all([
-                fetch(`https://api.themoviedb.org/3/movie/${randomNumber}/images`, {
-                    headers: {
-                        accept: 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    }
-                }),
-                fetch(`https://api.themoviedb.org/3/movie/${randomNumber}?language=en-US`, {
-                    headers: {
-                        accept: 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    }
-                })
-            ]);
+            const imageRes = await fetch(`https://api.themoviedb.org/3/movie/${randomNumber}/images`, {
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            // const infoRes = await fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=release_date.desc&page=2&release_date.gte=2000-01-01&release_date.lte=2024-05-01&vote_count.gte=5000&with_original_language=en`, {
 
-            alert(username)
-
-            if (!imageRes.ok || !infoRes.ok) {
-                console.warn(`Invalid ID: ${randomNumber}. Retrying...`);
-                f2();
-                return;
-            }
+                const infoRes = await fetch(`https://api.themoviedb.org/3/movie/${randomNumber}?language=en-US`, {
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${token}`,
+                }
+            });
 
             const imageData = await imageRes.json();
             const infoData = await infoRes.json();
 
-            const backdrop = imageData.backdrops?.[20] || imageData.backdrops?.[0];
+            const backdrop = imageData.backdrops?.[14] || imageData.backdrops?.[13] || imageData.backdrops?.[12] || imageData.backdrops?.[9] || imageData.backdrops?.[4] || imageData.backdrops?.[0];
 
             if (!backdrop) {
                 console.warn(`No backdrop found for ID: ${randomNumber}. Retrying...`);
