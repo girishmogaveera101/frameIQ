@@ -1,81 +1,131 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
-import Navbar from '../components/navbar'
+import React, { useState } from "react";
+const token = process.env.NEXT_PUBLIC_TMDB_URI;
 
-export default function page() {
+interface MovieType {
+    id?: number;
+    title?: string;
+    imageURL?: string;
+}
 
-    // variables
-    const [title, setTitle] = useState<string>("")
-    const [imageURL, setImageURL] = useState<string>("")
-    const [director, setDirector] = useState<string>("");
-    const [releaseDate, setReleaseDate] = useState<string>("");
-    const [description, setDescription] = useState<string>("");
-    const [rating, setRating] = useState<number>(0)
+function page() {
 
+    const [movieData, setMovieData] = useState<MovieType>();
+    const [pageNumber, setPageNumber] = useState<number>(1);
+    const [idNumber, setidNumber] = useState<number>();
+    const [idArray, setidArray] = useState<number[]>([]);
+    const [imgURLS, setImgURLS] = useState<string[]>([]);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const response = await fetch("/api/contributeMovie", {
+    const getid = async () => {
+        setidArray([]);
+        const response = await fetch("/api/findid", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(
-                {
-                    title: title,
-                    imageURL: imageURL,
-                    rating: rating,
-                    description:description,
-                    releaseDate:releaseDate,
-                    director:director
-
-                }
-            )
+            body: JSON.stringify({ pageNumber }),
         });
         const resData = await response.json();
-        console.log(resData);
+        for (let i = 0; i < 20; i++) {
+            setidArray((prev) => [...prev, resData[i].id]);
+        }
+    }
 
+
+    const getMovieData = async () => {
+        if (!idNumber) {
+            alert("ID is null")
+            return;
+        }
+        const infoRes = await fetch("/api/findMovieData", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ idNumber }),
+        });
+
+
+        const imageRes = await fetch("/api/findImages", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ idNumber }),
+        });
+
+        const infoData = await infoRes.json();
+        setMovieData({ title: infoData.title, id: infoData.id })
+        const imageData = await imageRes.json();
+        for (let i = 0; i < 50; i++) {
+            setImgURLS((prev) => [...prev, imageData.backdrops[i].file_path])
+        }
     }
 
     return (
         <>
-            <Navbar />
-            <p className="text-3xl text-black font-bold ml-[5%] mt-20">Contribute to our app</p>
-            <div className='text-[rgb(255,255,255)] w-[90%] md:w-[35%] mt-5 ml-[5%] rounded-xl
-             bg-[rgb(12,3,36)]  pt-3 px-10 md:px-20'>
-                <p className="text-center text-2xl text-[rgb(224,219,255)]">Enter Movie details</p>
-                <form onSubmit={handleSubmit}>
-                    <div className='  w-[100%] flex flex-col items-start'>
-                        <p className="text-xl mt-4">Enter movie title</p>
-                        <input type="text" value={title} onChange={(e) => { setTitle(e.target.value) }}
-                            className='border font-bold w-[50%] h-10 pl-4 mt-2 md:w-[30%]'
-                            placeholder='Iron Man 2' required />
-                        <p className="text-xl mt-7">Paste the movie frame link address</p>
-                        <input type="url" value={imageURL} onChange={(e) => { setImageURL(e.target.value) }}
-                            className='border font-bold h-10 pl-4 mt-2 w-full  md:w-[100%]'
-                            placeholder='https://film-grab.com/wp-content/upl' required />
-                        <p className="text-xl mt-7">Rating</p>
-                        <input type="number" value={rating} onChange={(e) => { setRating(e.target.valueAsNumber) }}
-                            className='border font-bold h-10 mt-2 pl-4 md:w-[15%]'
-                            placeholder='8.6' required />
-                        <p className="text-xl mt-4">Description [optional]</p>
-                        <input type="text" value={description} onChange={(e) => { setDescription(e.target.value) }}
-                            className='border font-bold h-10 pl-4 mt-2 md:w-[50%]'
-                            placeholder='Tony Stark is under pressure from various sources'/>
-                        <p className="text-xl mt-4">Release Date [optional]</p>
-                        <input type="text" value={releaseDate} onChange={(e) => { setReleaseDate(e.target.value) }}
-                            className='border font-bold h-10 pl-4 mt-2 md:w-[50%]'
-                            placeholder='7 May 2010' required />
-                        <p className="text-xl mt-4">Director [optional]</p>
-                        <input type="text" value={director} onChange={(e) => { setDirector(e.target.value) }}
-                            className='border font-bold h-10 pl-4 mt-2 md:w-[50%]'
-                            placeholder='Jon Favreau' required />
-                        <button type='submit' className=' w-[50%] md:w-[20%] mb-10 text-black h-10 bg-white mt-5 font-bold transition-all duration-500 hover:bg-[rgb(117,227,255)] hover:text-black'>submit</button>
+            <center>
+                <div className="fixed w-full bg-[rgb(234,0,255)] p-3 top-0 flex flex-row pt-5 flex-wrap md:justify-evenly justify-center items-center">
+                    <p className="text-black font-extrabold text-xl mr-5">Page Number</p>
+                    <input
+                        className="border-black font-extrabold border-2 w-[15%] text-black"
+                        type="number"
+                        value={pageNumber}
+                        onChange={(e) => {
+                            setPageNumber(e.target.valueAsNumber);
+                        }}
+                    />
+                    <br />
+                    <button onClick={getid}
+                        className="rounded h-13 text-xl mt-10 mb-10 hover:bg-purple-800 font-bold transition-all duration-300 w-60 bg-black text-white">
+                        Get IDs for page {pageNumber}
+                    </button>
+
+
+
+
+
+                    <input
+                        className="border-black border-2 font-extrabold rounded h-15 text-xl  text-black"
+                        type="number"
+                        value={idNumber}
+                        onChange={(e) => {
+                            setidNumber(e.target.valueAsNumber);
+                        }}
+                    />
+                    <button onClick={getMovieData}
+                        className="rounded h-15 text-xl hover:bg-purple-800 font-bold transition-all duration-300 w-30 bg-black text-white">
+                        Get Data
+                    </button>
+                    <div className="flex w-full mt-5 md:h-60 h-40 bg-black p-2 items-center justify-center text-white flex-row flex-wrap">
+                        <img className="w-[50%] md:w-[20%]" src={`https://image.tmdb.org/t/p/original${movieData?.imageURL}`} alt="" />
+                        <div className="flex flex-col w-[50%]">
+                            <p className="text-white">{movieData?.title}</p>
+                            <p className="text-white text-2xl">{movieData?.id}</p>
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <div className="flex bg-black mt-110 md:mt-120 items-center justify-center text-white flex-row flex-wrap">
+                    {idArray.map((id, index) => (
+                        <p key={index} onClick={(e) => { setidNumber(id) }} className=" border md:text-xl text-xs px-2 my-2 mx-3">{id}</p>
+                    ))}
+                </div>
+
+                <div className="flex flex-row mt-3 bg-black flex-wrap">
+                    {imgURLS.map((img, index) => (
+                        <div key={index} className="flex flex-row justify-center w-1/2 flex-wrap md:w-1/4">
+                            <p className="text-white">{index}</p>
+                            <img onClick={() => { setMovieData((prev) => ({ ...prev, imageURL: `https://image.tmdb.org/t/p/original${img}` })) }} key={index} src={`https://image.tmdb.org/t/p/original${img}`} alt="" className=" w-[90%] m-5 h-auto" />
+                        </div>
+                    ))}
+                </div>
+
+
+            </center>
         </>
     )
 }
 
+export default page
