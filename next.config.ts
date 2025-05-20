@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
         "i.pinimg.com",
         "lumiere-a.akamaihd.net",
         "m.media-amazon.com",
-        "api.themoviedb.org"
+        "api.themoviedb.org",
+        "image.tmdb.org"
       ]
   },
 };

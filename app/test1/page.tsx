@@ -68,10 +68,10 @@ function page() {
     return (
         <>
             <center>
-               <div className="flex flex-row flex-wrap">
-               <p className="text-black mt-20">Enter the Page Number</p>
+               <div className="fixed top-0 flex flex-row pt-5 flex-wrap md:justify-evenly justify-center items-center">
+               <p className="text-black mr-5">Enter the Page Number</p>
                 <input
-                    className="border-black border-2 text-black"
+                    className="border-black border-2 w-[15%] text-black"
                     type="number"
                     value={pageNumber}
                     onChange={(e) => {
@@ -80,7 +80,7 @@ function page() {
                 />
                 <br />
                 <button onClick={getid}
-                    className="rounded h-13 text-xl mt-10 mb-10 hover:bg-purple-800 hover:w-70 font-bold transition-all duration-300 w-60 bg-black text-white">
+                    className="rounded h-13 text-xl mt-10 mb-10 hover:bg-purple-800 font-bold transition-all duration-300 w-60 bg-black text-white">
                     Get IDs for page {pageNumber}
                 </button>
 
@@ -97,21 +97,21 @@ function page() {
                     }}
                 />
                 <button onClick={getMovieData}
-                    className="rounded h-15 text-xl mt-10 mb-10 hover:bg-purple-800 font-bold transition-all duration-300 w-30 bg-black text-white">
+                    className="rounded h-15 text-xl hover:bg-purple-800 font-bold transition-all duration-300 w-30 bg-black text-white">
                     Get Data
                 </button>
                </div>
 
-               <div className="flex bg-black items-center justify-center h-50 text-white flex-row flex-wrap">
+               <div className="flex bg-black mt-70 md:mt-50 p-2 items-center justify-center text-white flex-row flex-wrap">
                     {idArray.map((id, index) => (
                         <p key={index} className=" border px-2 my-2 mx-3">{id}</p>
                     ))}
                 </div>
 
-                <div className="flex flex-row bg-black flex-wrap">
+                <div className="flex flex-row mt-3 bg-black flex-wrap">
                     {imgURLS.map((img, index) => (
-                        <div key={index} className="flex flex-row justify-center flex-wrap w-1/4">
-                            <p key={index} className="text-white">{index}</p>
+                        <div key={index} className="flex flex-row justify-center w-1/2 flex-wrap md:w-1/4">
+                            <p className="text-white">{index}</p>
                             < img key={index} src={`https://image.tmdb.org/t/p/original${img}`} alt="" className=" w-[90%] m-5 h-auto" />
                         </div>
                     ))}
