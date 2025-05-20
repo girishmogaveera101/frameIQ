@@ -96,7 +96,7 @@ export default function Home() {
                                 <div className="flex flex-col">
                                     <div className="absolute mt-19 ml-2 w-100  bg-black" >
                                         {movies.map((movie, index) => (
-                                            <p className='text-[rgb(217,160,255)] bg-red m-3 text-xl' onClick={()=>{setHideBarStatus("hidden")}} style={{display:hideBarStatus}} key={index} onClick={() => { setMovieTitle(movie.title) }}>{movie.title}</p>
+                                            <p className='text-[rgb(217,160,255)] bg-red m-3 text-xl' style={{ display: hideBarStatus }} key={index} onClick={() => { setMovieTitle(movie.title); setHideBarStatus("hidden") }}>{movie.title}</p>
                                         ))}
                                     </div>
                                 </div>
