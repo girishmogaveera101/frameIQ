@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Menu } from "lucide-react";
 import Link from 'next/link';
 
 interface movieType {
@@ -11,8 +12,6 @@ interface movieType {
 }
 
 export default function navbar() {
-
-
 
     const [movieTitle, setMovieTitle] = useState<string>("");
     const [movies, setMovies] = useState<movieType[]>([]);
@@ -60,17 +59,26 @@ export default function navbar() {
                             }}
                             placeholder='Search a movie' />
                         <div className="absolute mt-8  bg-black w-58">
-                            {movies.map((movie,index)=>(
-                                <p className='text-[rgb(217,160,255)] border-1 bg-red m-2'  key={index} onClick={()=>{setMovieTitle(movie.title)}}>{movie.title}</p>
+                            {movies.map((movie, index) => (
+                                <p className='text-[rgb(217,160,255)] border-1 bg-red m-2' key={index} onClick={() => { setMovieTitle(movie.title) }}>{movie.title}</p>
                             ))}
                         </div>
                     </div>
                     <input type='submit' className='bg-white font-bold text-sxl rounded text-purple-700  w-25
                         hover:bg-black hover:text-white transition-all duration-700 hover:border-black border-2' value="Find?" />
                 </div>
+                <div className="">
+                    <i className="bi bi-list text-white"></i>
+                </div>
             </div>
-            <div>
+            <div className="relative group md:hidden">
+                <Menu size={36} className="m-5 cursor-pointer" />
 
+                <div className="sidebar bg-black h-full absolute hidden group-hover:block">
+                    <p className="mx-10">Home</p>
+                    <p className="mx-10">Login</p>
+                    <p className="mx-10">Contribute</p>
+                </div>
             </div>
         </div >
     )
