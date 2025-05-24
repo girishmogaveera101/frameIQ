@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
         "lumiere-a.akamaihd.net",
         "m.media-amazon.com",
         "api.themoviedb.org",
-        "image.tmdb.org"
+        "image.tmdb.org",
+        "api.themoviedb.org"
       ]
   },
 };
