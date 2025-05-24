@@ -15,6 +15,7 @@ export default function navbar() {
 
     const [movieTitle, setMovieTitle] = useState<string>("");
     const [movies, setMovies] = useState<movieType[]>([]);
+    const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
     const searchMovie = async (title: string) => {
         const response = await fetch("/api/allMovies", {
@@ -39,49 +40,58 @@ export default function navbar() {
 
 
     return (
-        <div className='w-full z-10 fixed top-0 text-white h-16 flex md:flex-row items-center bg-black '>
-            <p className='md:w-[60%] w-full bg-gradient-to-r from-white via-black bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-xl md:pl-3 md:pr-10'>
-                Frameiq
-            </p>
-            <div className=' w-[40%] align-right  md:flex justify-evenly hidden'>
-                <Link href='/'>
-                    <p className='font-bold hover:text-purple-400 transition-all duration-200'>Home</p>
-                </Link>
-                <p className='font-bold hover:text-purple-400  transition-all duration-200'>login</p>
-                <Link href="/contribute">
-                    <p className='font-bold hover:text-purple-400  transition-all duration-200'>contribute</p>
-                </Link>
-                <div className='flex'>
-                    <div className="flex flex-col">
-                        <input type="text" className="border font-bold outline-1 text-white pl-3 mr-2"
-                            value={movieTitle ?? ""}
-                            onChange={(e) => {
-                                const val = e.target.value;
-                                setMovieTitle(e.target.value);
-                            }}
-                            placeholder='Search a movie' />
-                        <div className="absolute mt-8  bg-black w-58">
-                            {movies.map((movie, index) => (
-                                <p className='text-[rgb(217,160,255)] border-1 bg-red m-2' key={index} onClick={() => { setMovieTitle(movie.title) }}>{movie.title}</p>
-                            ))}
+        <div className="flex  z-50 flex-col fixed top-0 w-full">
+            <div className='w-full z-10  text-white h-20 flex md:flex-row items-center bg-black '>
+                <p className='md:w-[60%] w-full bg-gradient-to-r from-purple-400 via-blue-500 bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-2xl md:pl-3 md:pr-10'>
+                    Frameiq
+                </p>
+                <div className=' w-[40%] align-right  md:flex justify-evenly hidden'>
+                    <Link href='/'>
+                        <p className='font-bold hover:text-purple-400 transition-all duration-200'>Home</p>
+                    </Link>
+                    <p className='font-bold hover:text-purple-400  transition-all duration-200'>login</p>
+                    <Link href="/contribute">
+                        <p className='font-bold hover:text-purple-400  transition-all duration-200'>contribute</p>
+                    </Link>
+                    <div className='flex'>
+                        <div className="flex flex-col">
+                            <input type="text" className="border font-bold outline-0 text-white pl-3 mr-2"
+                                value={movieTitle ?? ""}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    setMovieTitle(e.target.value);
+                                }}
+                                placeholder='Search a movie' />
+                            <div className="absolute mt-8  bg-black w-58">
+                                {movies.map((movie, index) => (
+                                    <p className='text-[rgb(217,160,255)] border-1 bg-red m-2' key={index} onClick={() => { setMovieTitle(movie.title) }}>{movie.title}</p>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    <input type='submit' className='bg-white hidden font-bold text-sxl rounded text-purple-700  w-25
+                        <input type='submit' className='bg-white hidden font-bold text-sxl rounded text-purple-700  w-25
                         hover:bg-black hover:text-white transition-all duration-700 hover:border-black border-2' value="Find?" />
+                    </div>
                 </div>
-                <div className="">
-                    <i className="bi bi-list text-white"></i>
+                <div className="group md:hidden">
+                    <Menu size={36} onClick={() => setMenuOpen(!menuOpen)}
+                        className="menuIcon transition-all duration-200 hover:text-purple-400 m-5 cursor-pointer" />
                 </div>
+            </div >
+            <div className={`text-white border-b-1 border-t-1 border-t-purple-900 border-purple-400 bg-black transition-all duration-500 overflow-hiddenmd:hidden text-center overflow-hidden group-hover:text-black md:p-5
+                 ${menuOpen ? "flex flex-col" : "hidden"}`}>
+                <Link href='/' onClick={() => { setMenuOpen(!menuOpen) }}>
+                    <p className="text-xl m-2 mt-6 transition-all duration-200 hover:text-purple-400">Home</p>
+                </Link>
+                <Link href='/game' onClick={() => { setMenuOpen(!menuOpen) }}>
+                    <p className="text-xl m-2 transition-all duration-200 hover:text-purple-400">Game</p>
+                </Link>
+                <Link href='/contribute' onClick={() => { setMenuOpen(!menuOpen) }}>
+                    <p className="text-xl m-2 transition-all duration-200 hover:text-purple-400">Contribute</p>
+                </Link>
+                <Link href='/profile' onClick={() => { setMenuOpen(!menuOpen) }}>
+                    <p className="text-xl m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
+                </Link>
             </div>
-            <div className="relative group md:hidden">
-                <Menu size={36} className="m-5 cursor-pointer" />
-
-                <div className="sidebar bg-black h-full absolute hidden group-hover:block">
-                    <p className="mx-10">Home</p>
-                    <p className="mx-10">Login</p>
-                    <p className="mx-10">Contribute</p>
-                </div>
-            </div>
-        </div >
+        </div>
     )
 }
