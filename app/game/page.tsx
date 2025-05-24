@@ -112,7 +112,7 @@ export default function Home() {
 
     return (
         <>
-            <p className="md:text-purple-900 text-xl text-purple-900 text-center md:flex md:text-4xl md:mt-20 mt-30 mb-5 font-extrabold md:ml-25 ">Guess the Movie title</p>
+            <p className="md:text-purple-900 text-xl text-purple-900 text-center md:flex md:text-4xl md:mt-30 mt-30 mb-5 font-extrabold md:ml-25 ">Guess the Movie title</p>
             <div className="flex  md:flex-row mt-5 md:mt-0 flex-col justify-center items-center">
                 <div className="md:w-[65%] w-[96%] shadow-2xl shadow-gray-700 rounded-[30px] bg-black md:bg-purple-700 md:ml-[2%] md:h-180 p-2 pt-3 md:mt-5 flex flex-row">
                     <div className=" md:p-2 flex flex-col justify-center items-center w-full">
