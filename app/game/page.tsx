@@ -1,6 +1,7 @@
 "use client"
 
-import react, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+// import PlayerStat from '../components/playerStat'
 
 interface movieType {
     _id: number,
@@ -21,15 +22,17 @@ interface movieDataType {
     username: string;
 }
 
+
+
+
+
+
+
 export default function Home() {
 
     const [movie, setMovie] = useState<movieDataType | null>(null);
     const [hideBarStatus, setHideBarStatus] = useState<string>("hidden");
-    const [attempts, setAttempts] = useState<number>(0);
-    const [streak, setStreak] = useState<number>(0);
-    const [totalAttempts, setTotalAttempts] = useState<number>(1);
-    const [accuracy, setAccuracy] = useState<number>(0);
-    const [totalRight, setTotalRight] = useState<number>(0);
+
 
 
     const handleSearch = async () => {
@@ -40,6 +43,12 @@ export default function Home() {
             console.log(resData)
         }
     };
+
+
+
+
+
+
 
 
     const [movieTitle, setMovieTitle] = useState<string>("");
@@ -58,6 +67,12 @@ export default function Home() {
         setMovies(resData.existingMovie);
 
     }
+
+
+
+
+
+
     useEffect(() => {
         if (movieTitle.trim().length > 0) {
             searchMovie(movieTitle);
@@ -68,32 +83,55 @@ export default function Home() {
 
 
 
+
+
+
+
+
+
+
+    const [attempts, setAttempts] = useState<number>(0);
+    const [streak, setStreak] = useState<number>(0);
+    const [totalAttempts, setTotalAttempts] = useState<number>(0);
+    const [accuracy, setAccuracy] = useState<number>(0);
+    const [totalRight, setTotalRight] = useState<number>(0);
+    const [besttreak, setBestStreak] = useState<number>(0);
+
     const checkAnswer = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (attempts < 3) {
             if (movieTitle == movie?.title) {
-                setAttempts(0)
-                const tempAccuracy = (totalRight/totalAttempts)*100;
-                setStreak(streak+1)
-                // alert("your right");
+                const newRight = totalRight + 1;
+                const newTotalAttempts = totalAttempts + 1;
+                const newAccuracy = (newRight / newTotalAttempts) * 100;
+                const newstreak = streak + 1;
+
+                setTotalRight(newRight)
+                setTotalAttempts(newTotalAttempts);
+                setAccuracy(newAccuracy)
                 setMovieTitle("");
-                setTotalRight(totalRight+1)
-                console.log(totalRight)
+                setStreak(newstreak)
+                setAttempts(0)
+                if (newstreak >= besttreak) {
+                    setBestStreak(newstreak)
+                }
                 handleSearch();
-                setTotalAttempts(totalAttempts+1);
-                setAccuracy(tempAccuracy)
                 return
             }
             else {
                 setAttempts(attempts + 1)
-                if(attempts==2){
-                    setTotalAttempts(totalAttempts+1);
+                if (attempts == 2) {
+                    const newTotalAttempts = totalAttempts + 1;
+                    const newAccuracy = (totalRight / newTotalAttempts) * 100;
+
+                    setTotalAttempts(newTotalAttempts);
                     setAttempts(0)
                     setMovieTitle("")
                     setStreak(0);
+                    setAccuracy(newAccuracy)
                     handleSearch();
+                    return
                 }
-                // alert("Youre wrong!");
                 return
             }
         }
@@ -102,6 +140,12 @@ export default function Home() {
             return
         }
     }
+
+
+
+
+
+
 
     useEffect(() => {
         handleSearch();
@@ -149,39 +193,52 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+
+
+
+
                 <div className="border-0 border-black md:w-[45%] w-[96%] p-2 flex flex-col justify-start items-center mt-3 md:h-full">
-                    <div className=" md:w-[70%] mt-5 w-full h-50 flex flex-col shadow-2xl shadow-gray-700 rounded-[30px] bg-black md:ml-[2%] md:h-120 p-3">
+                    <div className=" md:w-[70%] mt-5 w-full flex flex-col shadow-2xl shadow-gray-700 rounded-[30px] bg-black md:ml-[2%] md:h-130 p-3">
                         <p className="text-center text-purple-200 border-b-2 md:text-3xl md:mt-3 md:pb-7 pb-3 border-[rgb(183,0,255)] text-2xl font-extrabold">Player Stats</p>
                         <div className="flex flex-row mt-3">
+                            <p className="w-[40%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Attempts</p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{attempts}/3</p>
+                        </div>
+                        <div className="flex flex-row m-2">
                             <p className="w-[40%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Current Streak</p>
                             <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{streak}</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row m-2">
                             <p className="w-[40%]  text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Accuracy %</p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{accuracy}%</p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{accuracy.toFixed(2)}%</p>
                         </div>
-                        <div className="flex flex-row">
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Rank Level</p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">Guess Gladiator</p>
-                        </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row m-2">
                             <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Best Streak </p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">13</p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{besttreak}</p>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-row m-2">
                             <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Total attempts</p>
                             <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{totalAttempts}</p>
                         </div>
 
                     </div>
-                    <div className="md:w-[70%] flex flex-col w-full mb-10 h-35 md:border-b-20 border-black shadow-2xl shadow-gray-700  rounded-[30px] bg-black md:ml-[2%] md:h-45 mt-5 p-3">
+                    <div className="md:w-[70%] flex flex-col w-full mb-10 h-35 md:border-b-20 border-black shadow-2xl shadow-gray-700  rounded-[30px] bg-black md:ml-[2%] md:h-35 mt-5 p-3">
                         <p className="md:text-xl text-center text-purple-400 md:mb-2 font-extrabold">Description</p>
-                        <p className="md:text-1xl ml-10 mt-2 md:mb-2 font-extrabold">Attempts : {attempts}/3</p>
-                        <p className="md:text-1xl ml-10 md:mb-2 font-extrabold">Released : {movie?.director && movie?.releaseDate.slice(0, 4)}</p>
+                        <p className="md:text-1xl ml-10 mt-4 mb-4 md:mb-2 font-extrabold">Released : {movie?.director && movie?.releaseDate.slice(0, 4)}</p>
                         <p className="md:text-1xl ml-10 font-extrabold">Rating : {movie?.rating && movie?.rating.toFixed(1)}</p>
                     </div>
 
                 </div>
+
+
+
+
+
+
+
+
+
+
             </div>
         </>
     );
