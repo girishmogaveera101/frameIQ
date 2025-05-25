@@ -57,7 +57,7 @@ export default function latestMovies() {
             latestMovies.map((movie, index) => (
               <div
                 key={index}
-                className="group card md:h-100 min-w-[400] md:m-5 md:min-w-[600px] h-[250px] flex flex-col p-4 justify-end items-start overflow-hidden rounded-xl relative"
+                className="group card md:h-100 min-w-[400] md:m-5 mx-3 md:min-w-[600px] h-[250px] flex flex-col p-4 justify-end items-start overflow-hidden rounded-xl relative"
               >
                 {/* Background Image Layer */}
                 <div
