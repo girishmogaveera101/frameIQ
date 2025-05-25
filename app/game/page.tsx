@@ -155,14 +155,14 @@ export default function Home() {
 
 
     return (
-        <>
-            <p className="md:text-purple-900 text-xl text-purple-900 text-center md:flex md:text-4xl md:mt-30 mt-30 mb-5 font-extrabold md:ml-25 ">Guess the Movie title</p>
+        <div className=''>
+            <p className="text-purple-500 text-xl text-center md:flex md:text-4xl md:mt-30 mt-30 mb-5 font-extrabold md:ml-25 ">Guess the Movie title</p>
             <div className="flex  md:flex-row mt-5 md:mt-0 flex-col justify-center items-center">
-                <div className="md:w-[65%] w-[96%] shadow-2xl shadow-gray-700 rounded-[30px] bg-black md:bg-purple-700 md:ml-[2%] md:h-180 p-2 pt-3 md:mt-5 flex flex-row">
+                <div className="md:w-[65%] w-[96%] border-1 border-purple-900  rounded-[30px] bg-transparent md:bg-black shadow-2xl shadow-black  md:bg-purple-1000 md:ml-[2%] md:h-180 p-2 pt-3 md:mt-5 flex flex-row">
                     <div className=" md:p-2 flex flex-col justify-center items-center w-full">
-                        <div className='md:border-6 md:mt-5 flex border-white rounded-[30px] overflow-hidden md:w-[95%] w-[95%] h-[70%] md:h-[90%]'>
+                        <div className='md:border-4 md:mt-5 flex border-gray-400 rounded-[30px] overflow-hidden md:w-[95%] w-[95%] h-[90%] md:h-[90%]'>
                             <img src={movie?.imageURL}
-                                className=' text-black inset-0 h-full w-full transition-all duration-300 hover:scale-120' alt="image" />
+                                className=' text-black inset-0 md:h-full w-full transition-all duration-300 hover:scale-120' alt="image" />
                             <p className="text-purple-200 text-2xl m-3 border-0 font-extrabold md:m-5 md:text-4xl border-white absolute">{movie?.releaseDate && movie?.releaseDate.slice(0, 4)}</p>
                         </div>
                         <div className=" flex flex-row md:flex-nowrap h-[30%] md:h-[10%] justify-end mt-4">
@@ -185,7 +185,7 @@ export default function Home() {
                                         placeholder='Enter Movie Title' required
                                         className='md:border-6 pl-4 md:text-black rounded-xl focus:outline-0  md:border-white w-[100%]  md:bg-white font-extrabold md:h-15 h-10 md:text-2xl text-1xl md:w-150 m-2 border-2 border-purple-700 md:mb-10  bg-black text-white ' />
                                     <button
-                                        className='text-white md:border-0 border-2 border-purple-700 bg-black m-2 md:h-15 h-10 w-30 font-extrabold md:text-2xl text-xs md:mb-10 transition-all duration-300 hover:bg-green-500 rounded-[6px]'>
+                                        className='text-white md:border-0 border-purple-700 bg-blue-600 m-2 md:h-15 h-10 w-30 font-extrabold md:text-2xl text-xs md:mb-10 transition-all duration-300 hover:bg-green-500 rounded-[6px]'>
                                         Submit
                                     </button>
                                 </div>
@@ -198,31 +198,31 @@ export default function Home() {
 
 
                 <div className="border-0 border-black md:w-[45%] w-[96%] p-2 flex flex-col justify-start items-center mt-3 md:h-full">
-                    <div className=" md:w-[70%] mt-5 w-full flex flex-col shadow-2xl shadow-gray-700 rounded-[30px] bg-black md:ml-[2%] md:h-130 p-3">
+                    <div className=" md:w-[70%] mt-5 w-full flex flex-col md:border-2 border-1 border-blue-300 md:border-purple-700 shadow-2xl shadow-black  rounded-[30px] bg-black md:ml-[2%] md:h-130 p-3">
                         <p className="text-center text-purple-200 border-b-2 md:text-3xl md:mt-3 md:pb-7 pb-3 border-[rgb(183,0,255)] text-2xl font-extrabold">Player Stats</p>
                         <div className="flex flex-row mt-3">
-                            <p className="w-[40%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Attempts</p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{attempts}/3</p>
+                            <p className="w-[60%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Attempts</p>
+                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{attempts}/3</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[40%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Current Streak</p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{streak}</p>
+                            <p className="w-[60%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Current Streak</p>
+                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{streak}</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[40%]  text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Accuracy %</p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{accuracy.toFixed(2)}%</p>
+                            <p className="w-[60%]  text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Accuracy %</p>
+                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{accuracy.toFixed(2)}%</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Best Streak </p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{besttreak}</p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Best Streak </p>
+                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{besttreak}</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Total attempts</p>
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{totalAttempts}</p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Total attempts</p>
+                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{totalAttempts}</p>
                         </div>
 
                     </div>
-                    <div className="md:w-[70%] flex flex-col w-full mb-10 h-35 md:border-b-20 border-black shadow-2xl shadow-gray-700  rounded-[30px] bg-black md:ml-[2%] md:h-35 mt-5 p-3">
+                    <div className="md:w-[70%] flex flex-col w-full mb-10 h-35 md:border-2 border-1 border-blue-300 md:border-purple-700 md:border-b-2 shadow-2xl shadow-black rounded-[30px] bg-black md:ml-[2%] md:h-35 mt-5 p-3">
                         <p className="md:text-xl text-center text-purple-400 md:mb-2 font-extrabold">Description</p>
                         <p className="md:text-1xl ml-10 mt-4 mb-4 md:mb-2 font-extrabold">Released : {movie?.director && movie?.releaseDate.slice(0, 4)}</p>
                         <p className="md:text-1xl ml-10 font-extrabold">Rating : {movie?.rating && movie?.rating.toFixed(1)}</p>
@@ -240,6 +240,6 @@ export default function Home() {
 
 
             </div>
-        </>
+        </div>
     );
 }

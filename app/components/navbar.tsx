@@ -40,7 +40,7 @@ export default function navbar() {
 
 
     return (
-        <div className="flex  z-50 flex-col fixed top-0 w-full">
+        <div className="flex z-50 flex-col fixed top-0 w-full">
             <div className='w-full z-10  text-white h-20 flex md:flex-row items-center bg-black '>
                 <p className='md:w-[60%] w-full bg-gradient-to-r from-purple-400 via-blue-500 bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-2xl md:pl-3 md:pr-10'>
                     Frameiq
@@ -55,16 +55,16 @@ export default function navbar() {
                     </Link>
                     <div className='flex'>
                         <div className="flex flex-col">
-                            <input type="text" className="border font-bold outline-0 text-white pl-3 mr-2"
+                            <input type="text" className="border-l-1 border-purple-500 font-bold outline-0 text-white pl-3 mr-2 cursor-pointer"
                                 value={movieTitle ?? ""}
                                 onChange={(e) => {
                                     const val = e.target.value;
                                     setMovieTitle(e.target.value);
                                 }}
                                 placeholder='Search a movie' />
-                            <div className="absolute mt-8  bg-black w-58">
+                            <div className="absolute mt-8  bg-black w-58 cursor-pointer" >
                                 {movies.map((movie, index) => (
-                                    <p className='text-[rgb(217,160,255)] border-1 bg-red m-2' key={index} onClick={() => { setMovieTitle(movie.title) }}>{movie.title}</p>
+                                    <p className='text-[rgb(217,160,255)] border-b-0 bg-red m-2' key={index} onClick={() => { setMovieTitle(movie.title) }}>{movie.title}</p>
                                 ))}
                             </div>
                         </div>

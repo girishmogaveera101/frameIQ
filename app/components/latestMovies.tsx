@@ -36,8 +36,8 @@ export default function latestMovies() {
 
 
   return (
-    <>
-      <p className='text-[rgb(80,80,80)] mt-10 md:mt-0 text-xl md:text-2xl text-center md:text-left font-bold md:ml-50 '>Latest contributes</p>
+    <div className=''>
+      <p className='text-[rgb(190,190,190)] mt-10 md:mt-0 text-xl md:text-xl text-center md:text-left font-bold md:ml-20 '>Latest contributes</p>
       <div className="mt-5 w-[100%] ml-[0%] md:h-130 h-75  bg-[rgb(0,0,0)] flex overflow-x-auto overflow-hidden items-center space-x-4 p-4">
         <style jsx>{`
         @keyframes scroll-left {
@@ -91,11 +91,11 @@ export default function latestMovies() {
             ))
 
           ) : (
-            <p className='text-white text-3xl font-extrabold md:ml-[48%]'>loading</p>
+            <p className='text-purple-300 text-2xl text-center font-extrabold'>loading..</p>
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
