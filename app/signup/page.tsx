@@ -1,19 +1,52 @@
 "use client"
 
-import React, { useState, useEffect, use } from 'react'
-
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import Loading from '../components/loading'
 
 
 function page() {
 
+    const router = useRouter()
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [favCharacter, setFavCharacter] = useState<string>("");
+    const [loadingStatus, setLoadingStatus] = useState<boolean>(false)
 
 
-    const handleSignup = async () => {
-        alert("woking")
+    const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const response = await fetch('/api/signupUser', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password, favCharacter }),
+        });
+        const resData = await response.json();
+        console.log(resData)
+        if (response.status == 400) {
+            console.log("username already used")
+            setLoadingStatus(true)
+            setTimeout(() => {
+                setLoadingStatus(false)
+            }, 3000)
+            return;
+        }
+        if (response.status == 200) {
+            console.log("success")
+            setLoadingStatus(true)
+            setTimeout(() => {
+                router.push(`/?username=${encodeURIComponent(username)}`);
+                setLoadingStatus(false)
+            }, 3000)
+            return;
+        }
+        else {
+            console.log("error")
+            return;
+        }
     }
 
 
@@ -27,7 +60,7 @@ function page() {
                             <p className="w-[50%] text-right">username</p>
                             <input type="text" value={username} onChange={(e) => { setUsername(e.target.value) }}
                                 className="border-l-1 border-purple-400 w-[50%] ml-5 pl-2 focus:outline-0"
-                                placeholder='astroidblastyer69' required />
+                                placeholder='astroidblaster69' required />
                         </div>
                         <div className="flex flex-row m-5 border-0">
                             <p className="w-[50%] text-right">password</p>
@@ -35,11 +68,12 @@ function page() {
                                 className="border-l-1 border-purple-400 w-[50%] ml-5 pl-2 focus:outline-0"
                                 placeholder='*******' required />
                         </div>
+                        {loadingStatus && <Loading />}
                         <div className="flex flex-row m-5 border-0">
                             <p className="w-[50%] text-right">fav character</p>
                             <input type="text" value={favCharacter} onChange={(e) => { setFavCharacter(e.target.value) }}
                                 className="border-l-1 border-purple-400 w-[50%] ml-5 pl-2 focus:outline-0"
-                                placeholder='Batman' />
+                                placeholder='Batman [optional]' />
                         </div>
                         <button className="bg-purple-400 border-1 text-black font-extrabold md:text-xl md:px-10 px-5 hover:md:px-17 transition-all duration-400 hover:border-1 hover:border-blue-400 hover:bg-black hover:text-blue-400 py-1 mt-7">signup</button>
                     </div>

@@ -1,16 +1,33 @@
 
-// import Navbar from './components/navbar';
+"use client"
+
 import Link from 'next/link';
 import LatestMovies from './components/latestMovies'
+import { useSearchParams } from 'next/navigation';
+import Loading from './components/loading'
+import { useState, useEffect } from 'react';
 
 
 export default function Home() {
 
+  const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingStatus(false)
+    }, 2000);
+  }, []);
+
+  const searchParams = useSearchParams();
+  const username = searchParams.get('username');
+  console.log(username)
 
 
 
 
   return (<div className=''>
+
+    {loadingStatus && <Loading />}
 
     <h1 className="md:text-7xl text-4xl md:mt-25 mt-30 text-center font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
       One Frame. Three Shots. Don’t Screw It Up.
@@ -19,7 +36,7 @@ export default function Home() {
       Get it right, feel like a god. Get it wrong, feel like a clown.
     </p>
     <LatestMovies />
-
+    { }
     <center>
 
       <Link href='/game'>
