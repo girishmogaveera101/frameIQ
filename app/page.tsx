@@ -2,6 +2,7 @@
 // import Navbar from './components/navbar';
 import Link from 'next/link';
 import LatestMovies from './components/latestMovies'
+import Footer from './components/Footer'
 
 
 export default function Home() {
@@ -30,6 +31,11 @@ export default function Home() {
         <button className="rounded h-15 text-xl my-10 hover:bg-green-600 hover:w-70 font-bold transition-all duration-300 w-45 bg-black">Contribute</button>
       </Link>
     </center>
+
+
+
+
+    <Footer/>
 
   </div>
   );
