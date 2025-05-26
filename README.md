@@ -11,7 +11,7 @@
 - Each correct guess boosts your stats: streaks, accuracy, and more.
 - Get rewarded with **funny rank titles** based on your correct guesses.
 - Users can **contribute their own movie frames** to the app, helping it grow.
-- In future versions, we plan to introduce:
+- In future versions, got plans to introduce:
   - 🏆 **Global Leaderboards**
   - 👥 **Multi-user profiles with authentication**
   - 🧠 **Difficulty levels and categories**
@@ -26,9 +26,6 @@
 | TypeScript  | Static typing for cleaner code               |
 | TailwindCSS | Utility-first CSS framework                  |
 | MongoDB     | NoSQL database to store movie frames & stats |
-| Prisma      | ORM for database queries                     |
-| Zustand     | Lightweight state management                 |
-| Shadcn/UI   | Stylish components and UI consistency        |
 | Vercel      | Deployment and hosting                       |
 
 ---
@@ -36,7 +33,7 @@
 ## 📦 Features
 
 - 🎮 **Fun gameplay** with 3 attempts to guess a movie by frame
-- 📊 **User stats**: total attempts, accuracy, streaks
+- 📊 **User stats**: total attempts, accuracy, streaks, best streak
 - 🧑‍🎨 **Contribute frames** to grow the game database
 - 🧑‍💻 **Componentized React UI** with modular code structure
 - 🧠 **Title Ranks**: based on your guessing performance
@@ -74,28 +71,27 @@ Depending on your total correct guesses, you get a badge of honor:
 1. **Clone the repository**  
    ```bash
    git clone https://github.com/your-username/frameguess.git
-
    cd frameguess
-
    npm install
 
 
-```
+    ```
 2. **Install dependencies**  
-```npm install ```
+    ```bash
+    npm install 
+    ```
 
 3. ** Add environment variables **
-```
-MONGODB_URI=your_mongo_uri
-NEXTAUTH_SECRET=your_auth_secret
-NEXTAUTH_URL=http://localhost:3000
-```
+    ```bash
+    MONGODB_URI=your_mongo_uri
+    NEXTAUTH_SECRET=your_auth_secret
+    NEXTAUTH_URL=http://localhost:3000
+    ```
 
 4.** Run locally **
-```
-npm run dev
-
-```
+    ```bash
+    npm run dev
+    ```
 
 
 5. ** Visit http://localhost:3000 **
