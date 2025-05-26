@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 FrameGuess - Guess the Movie from the Frame
 
-## Getting Started
+**FrameGuess** is a fun and challenging web-based game where users try to guess a movie based solely on a single frame from the film. Designed for movie lovers and frame-spotting pros, this project lets users play, contribute new content, and track their guessing stats.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🕹️ What Is This Game?
+
+- Players are shown **one frame** (screenshot) from a movie.
+- They get **3 chances** to correctly guess the movie title.
+- Each correct guess boosts your stats: streaks, accuracy, and more.
+- Get rewarded with **funny rank titles** based on your correct guesses.
+- Users can **contribute their own movie frames** to the app, helping it grow.
+- In future versions, we plan to introduce:
+  - 🏆 **Global Leaderboards**
+  - 👥 **Multi-user profiles with authentication**
+  - 🧠 **Difficulty levels and categories**
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech        | Description                                  |
+|-------------|----------------------------------------------|
+| Next.js 14  | React Framework (App Router + SSR)           |
+| TypeScript  | Static typing for cleaner code               |
+| TailwindCSS | Utility-first CSS framework                  |
+| MongoDB     | NoSQL database to store movie frames & stats |
+| Prisma      | ORM for database queries                     |
+| Zustand     | Lightweight state management                 |
+| Shadcn/UI   | Stylish components and UI consistency        |
+| Vercel      | Deployment and hosting                       |
+
+---
+
+## 📦 Features
+
+- 🎮 **Fun gameplay** with 3 attempts to guess a movie by frame
+- 📊 **User stats**: total attempts, accuracy, streaks
+- 🧑‍🎨 **Contribute frames** to grow the game database
+- 🧑‍💻 **Componentized React UI** with modular code structure
+- 🧠 **Title Ranks**: based on your guessing performance
+
+---
+
+## 🏅 Rank Titles
+
+Depending on your total correct guesses, you get a badge of honor:
+
+| Correct Guesses | Title               |
+|-----------------|---------------------|
+| 0–2             | 🎬 “Movie Noob”     |
+| 3–5             | 🍿 “CineBoi”        |
+| 6–9             | 📼 “FrameFinder”    |
+| 10–14           | 🕵️ “Scene Sniper”   |
+| 15–19           | 🎯 “GuessGod Jr.”   |
+| 20–24           | 👑 “Movie Maniac”   |
+| 25–29           | 🔥 “Cinema Slayer”  |
+| 30+             | 🧠 “Frame Conqueror”|
+
+---
+
+## 🚧 Future Plans
+
+- 🌍 Global leaderboard with highest scores & longest streaks
+- 👥 Multi-user authentication and personalized profiles
+- 🔒 Frame moderation and quality control for user submissions
+- 🎛️ Difficulty levels and genre-based gameplay
+
+---
+
+## 🧪 Setup Instructions
+
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/your-username/frameguess.git
+
+   cd frameguess
+
+   npm install
+
+
+```
+2. **Install dependencies**  
+```npm install ```
+
+3. ** Add environment variables **
+```
+MONGODB_URI=your_mongo_uri
+NEXTAUTH_SECRET=your_auth_secret
+NEXTAUTH_URL=http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4.** Run locally **
+```
+npm run dev
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. ** Visit http://localhost:3000 **
