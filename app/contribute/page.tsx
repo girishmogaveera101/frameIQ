@@ -193,7 +193,7 @@ function page() {
 
                 <div className="flex bg-black md:mt-0 py-2 items-center justify-center text-white flex-row flex-wrap">
                     {idArray.map((id, index) => (
-                        <div onClick={(e) => { setidNumber(id),getMovieData() }}
+                        <div key={index} onClick={(e) => { setidNumber(id),getMovieData() }}
                             className="border-[rgb(122,122,122)] active:bg-purple-400 hover:bg-purple-400 transition-all duration-300 hover:text-black border-1 md:p-5 md:mx-8 m-2 cursor-pointer">
                             <p  key={index} className="m-1 font-extrabold md:text-xl text-xs">{movieName[index].slice(0, 20)}</p>
                         </div>
@@ -201,7 +201,7 @@ function page() {
                     ))}
                 </div>
 
-                <div className="flex flex-row bg-black flex-wrap">
+                <div className="flex flex-row  bg-black flex-wrap">
                     {imgURLS.map((img, index) => (
                         <div key={index} className="flex flex-row justify-center w-1/2 flex-wrap md:w-1/4">
                             {/* <p className="text-white">{index}</p> */}

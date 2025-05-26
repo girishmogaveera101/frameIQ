@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { Github, Instagram, Linkedin, User } from "lucide-react";
 

@@ -41,7 +41,7 @@ export default function navbar() {
 
     return (
         <div className="flex z-50 flex-col fixed top-0 w-full">
-            <div className='w-full z-10  text-white h-20 flex md:flex-row items-center bg-black '>
+            <div className='w-full z-10  text-white h-20 flex md:flex-row items-center bg-black border-b-1 border-b-gray-800'>
                 <p className='md:w-[60%] w-full bg-gradient-to-r from-purple-400 via-blue-500 bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-2xl md:pl-3 md:pr-10'>
                     Frameiq
                 </p>
@@ -77,19 +77,19 @@ export default function navbar() {
                         className="menuIcon transition-all duration-200 hover:text-purple-400 m-5 cursor-pointer" />
                 </div>
             </div >
-            <div className={`text-white border-b-1 border-t-1 border-t-purple-900 border-purple-400 bg-black transition-all duration-500 overflow-hiddenmd:hidden text-center overflow-hidden group-hover:text-black md:p-5
+            <div className={`text-white border-b-1  border-purple-900 bg-black transition-all duration-500 overflow-hiddenmd:hidden text-center overflow-hidden group-hover:text-black md:p-5
                  ${menuOpen ? "flex flex-col" : "hidden"}`}>
                 <Link href='/' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl m-2 mt-6 transition-all duration-200 hover:text-purple-400">Home</p>
+                    <p className="text-xl text-gray-400 m-2 mt-6 transition-all duration-200 hover:text-purple-400">Home</p>
                 </Link>
                 <Link href='/game' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl m-2 transition-all duration-200 hover:text-purple-400">Game</p>
+                    <p className="text-xl text-gray-400 m-2 transition-all duration-200 hover:text-purple-400">Game</p>
                 </Link>
                 <Link href='/contribute' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl m-2 transition-all duration-200 hover:text-purple-400">Contribute</p>
+                    <p className="text-xl text-gray-400 m-2 transition-all duration-200 hover:text-purple-400">Contribute</p>
                 </Link>
                 <Link href='/profile' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
+                    <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
                 </Link>
             </div>
         </div>
