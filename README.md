@@ -71,7 +71,7 @@ Depending on your total correct guesses, you get a badge of honor:
 1. **Clone the repository**  
    ```bash
    git clone https://github.com/girishmogaveera101/frameIQ.git
-   cd frameguess
+   cd frameIQ
     ```
 2. **Install dependencies**  
     ```bash

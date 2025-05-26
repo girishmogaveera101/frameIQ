@@ -47,11 +47,11 @@ export default function navbar() {
                 </p>
                 <div className=' w-[40%] align-right  md:flex justify-evenly hidden'>
                     <Link href='/'>
-                        <p className='font-bold hover:text-purple-400 transition-all duration-200'>Home</p>
+                        <p className='font-bold hover:text-blue-400 transition-all duration-200'>Home</p>
                     </Link>
-                    <p className='font-bold hover:text-purple-400  transition-all duration-200'>login</p>
+                    <p className='font-bold hover:text-blue-400  transition-all duration-200'>signup</p>
                     <Link href="/contribute">
-                        <p className='font-bold hover:text-purple-400  transition-all duration-200'>contribute</p>
+                        <p className='font-bold hover:text-blue-400  transition-all duration-200'>contribute</p>
                     </Link>
                     <div className='flex'>
                         <div className="flex flex-col">
