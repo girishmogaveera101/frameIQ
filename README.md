@@ -1,6 +1,6 @@
 # 🎬 FrameGuess - Guess the Movie from the Frame
 
-**FrameGuess** is a fun and challenging web-based game where users try to guess a movie based solely on a single frame from the film. Designed for movie lovers and frame-spotting pros, this project lets users play, contribute new content, and track their guessing stats.
+**FrameIQ** is a fun and challenging web-based game where users try to guess a movie based solely on a single frame from the film. Designed for movie lovers and frame-spotting pros, this project lets users play, contribute new content, and track their guessing stats.
 
 ---
 
@@ -72,9 +72,6 @@ Depending on your total correct guesses, you get a badge of honor:
    ```bash
    git clone https://github.com/your-username/frameguess.git
    cd frameguess
-   npm install
-
-
     ```
 2. **Install dependencies**  
     ```bash
@@ -84,11 +81,10 @@ Depending on your total correct guesses, you get a badge of honor:
 3. **Add environment variables**
     ```bash
     MONGODB_URI=your_mongo_uri
-    NEXTAUTH_SECRET=your_auth_secret
-    NEXTAUTH_URL=http://localhost:3000
+    NEXT_PUBLIC_TMDB_URI=your_auth_secret
     ```
 
-4.**Run locally**
+4. **Run locally**
     ```bash
     npm run dev
     ```
