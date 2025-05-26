@@ -2,7 +2,6 @@
 // import Navbar from './components/navbar';
 import Link from 'next/link';
 import LatestMovies from './components/latestMovies'
-import Footer from './components/Footer'
 
 
 export default function Home() {
@@ -33,9 +32,6 @@ export default function Home() {
     </center>
 
 
-
-
-    <Footer/>
 
   </div>
   );
