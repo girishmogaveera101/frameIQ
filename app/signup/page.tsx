@@ -38,7 +38,7 @@ function page() {
             console.log("success")
             setLoadingStatus(true)
             setTimeout(() => {
-                router.push(`/?username=${encodeURIComponent(username)}`);
+                router.push(`/`);
                 setLoadingStatus(false)
             }, 3000)
             return;
