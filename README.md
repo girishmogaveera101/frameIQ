@@ -21,7 +21,7 @@
 ## 🛠️ Tech Stack
 
 | Tech        | Description                                  |
-|-------------|----------------------------------------------|
+| ----------- | -------------------------------------------- |
 | Next.js 14  | React Framework (App Router + SSR)           |
 | TypeScript  | Static typing for cleaner code               |
 | TailwindCSS | Utility-first CSS framework                  |
@@ -45,15 +45,15 @@
 Depending on your total correct guesses, you get a badge of honor:
 
 | Correct Guesses | Title               |
-|-----------------|---------------------|
-| 0–2             | 🎬 “Movie Noob”     |
-| 3–5             | 🍿 “CineBoi”        |
-| 6–9             | 📼 “FrameFinder”    |
-| 10–14           | 🕵️ “Scene Sniper”   |
-| 15–19           | 🎯 “GuessGod Jr.”   |
-| 20–24           | 👑 “Movie Maniac”   |
-| 25–29           | 🔥 “Cinema Slayer”  |
-| 30+             | 🧠 “Frame Conqueror”|
+| --------------- | ------------------- |
+| 0–2             | 🎬 “Movie Noob”      |
+| 3–5             | 🍿 “CineBoi”         |
+| 6–9             | 📼 “FrameFinder”     |
+| 10–14           | 🕵️ “Scene Sniper”    |
+| 15–19           | 🎯 “GuessGod Jr.”    |
+| 20–24           | 👑 “Movie Maniac”    |
+| 25–29           | 🔥 “Cinema Slayer”   |
+| 30+             | 🧠 “Frame Conqueror” |
 
 ---
 
@@ -81,17 +81,17 @@ Depending on your total correct guesses, you get a badge of honor:
     npm install 
     ```
 
-3. ** Add environment variables **
+3. **Add environment variables**
     ```bash
     MONGODB_URI=your_mongo_uri
     NEXTAUTH_SECRET=your_auth_secret
     NEXTAUTH_URL=http://localhost:3000
     ```
 
-4.** Run locally **
+4.**Run locally**
     ```bash
     npm run dev
     ```
 
 
-5. ** Visit http://localhost:3000 **
+5. **Visit http://localhost:3000**
