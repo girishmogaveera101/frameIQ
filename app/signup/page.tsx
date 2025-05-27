@@ -5,9 +5,6 @@ import { useRouter } from 'next/navigation'
 import Loading from '../components/loading'
 import Link from 'next/link'
 
-
-
-
 function page() {
 
     const router = useRouter()
