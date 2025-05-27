@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import LatestMovies from './components/latestMovies'
-// import { headers } from 'next/headers';
+import type { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+  title: "FrameIQ",
+  description: "Guess the movie from a single frame. Challenge your memory, test your movie knowledge!"
+};
 
 export default function Home() {
 

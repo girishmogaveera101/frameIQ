@@ -3,7 +3,13 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Loading from '../components/loading'
+import type { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+    title: "FrameIQ | signup",
+    description: "Guess the movie from a single frame. Challenge your memory, test your movie knowledge!"
+  };
 
 function page() {
 
