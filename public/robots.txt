@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://frameiq.vercel.app
+
+# Sitemaps
+Sitemap: https://frameiq.vercel.app/sitemap.xml
