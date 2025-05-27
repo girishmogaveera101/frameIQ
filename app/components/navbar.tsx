@@ -52,6 +52,9 @@ export default function navbar() {
                     <Link href='/signup'>
                         <p className='font-bold hover:text-blue-400  transition-all duration-200'>signup</p>
                     </Link>
+                    {/* <Link href='/user/${username}'>
+                        <p className='font-bold hover:text-blue-400 transition-all duration-200'>Profile</p>
+                    </Link> */}
                     <Link href="/contribute">
                         <p className='font-bold hover:text-blue-400  transition-all duration-200'>contribute</p>
                     </Link>
