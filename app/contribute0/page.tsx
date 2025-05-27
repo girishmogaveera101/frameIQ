@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar'
-import { Suspense } from 'react';
 
 
 export default function page() {
@@ -42,9 +41,7 @@ export default function page() {
 
     return (
         <>
-            <Suspense fallback={<div>Loading...</div>}>
-                <Navbar />
-            </Suspense>
+            <Navbar />
             <p className="text-3xl text-black font-bold ml-[5%] mt-20">Contribute to our app</p>
             <div className='text-[rgb(255,255,255)] w-[90%] md:w-[35%] mt-5 ml-[5%] rounded-xl
              bg-[rgb(12,3,36)]  pt-3 px-10 md:px-20'>

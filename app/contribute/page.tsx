@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
-import { Suspense } from 'react';
 
 
 
@@ -143,11 +142,8 @@ function page() {
         <>
 
             {loadingStatus && <Loading />}
-            <Suspense fallback={<div>Loading...</div>}>
-                <Navbar />
-            </Suspense>
+            <Navbar />
 
-            {/* <center> */}
             <div className="border-black border-2 md:h-full md:w-full w-full bg-[rgb(251,207,255)] pt-20 flex flex-row flex-wrap md:justify-evenly md:items-left justify-start items-center">
                 <div className="md:w-[25%]  w-[70%] flex flex-row flex-wrap justify-end items-center">
                     <button onClick={randomPage}
@@ -221,7 +217,6 @@ function page() {
             <div className="flex flex-row  bg-black flex-wrap">
                 {imgURLS.map((img, index) => (
                     <div key={index} className="flex flex-row justify-center w-1/2 flex-wrap md:w-1/4">
-                        {/* <p className="text-white">{index}</p> */}
                         <img onClick={(e) => { setMovieData((prev) => ({ ...prev, imageURL: `https://image.tmdb.org/t/p/original${img}` })) }}
                             key={index} src={`https://image.tmdb.org/t/p/original${img}`}
                             alt="" className=" w-[90%] m-5 h-auto transition-all duration-300 cursor-pointer hover:scale-110" />
@@ -230,7 +225,6 @@ function page() {
             </div>
 
 
-            {/* </center> */}
         </>
     )
 }

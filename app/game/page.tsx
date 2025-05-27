@@ -1,10 +1,8 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-// import PlayerStat from '../components/playerStat'
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
-import { Suspense } from 'react';
 
 
 
@@ -168,9 +166,7 @@ export default function Home() {
     return (
         <div className='md:mb-20'>
             {loadingStatus && <Loading />}
-            <Suspense fallback={<div>Loading...</div>}>
-                <Navbar />
-            </Suspense>
+            <Navbar />
             <p className="text-purple-500 text-xl text-center md:flex md:text-4xl md:mt-30 mt-25 mb-5 font-extrabold md:ml-25 ">Guess the Movie title</p>
             <div className="flex  md:flex-row mt-5 md:mt-0 flex-col justify-center items-center">
                 <div className="md:w-[65%] w-[96%] border-1 md:border-0 border-purple-900  rounded-[30px] bg-transparent md:bg-black shadow-2xl shadow-black  md:bg-purple-1000 md:ml-[2%] md:h-180 p-2 pt-3 md:mt-5 flex flex-row">

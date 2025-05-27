@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from "lucide-react";
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 interface movieType {
     _id: number,
@@ -14,8 +14,14 @@ interface movieType {
 
 export default function navbar() {
 
-    const searchParams = useSearchParams();
-    const username = searchParams.get('username') ?? 'guest';
+    const [username, setUsername] = useState<string | null>(null);
+    console.log("username : ", username)
+
+    useEffect(() => {
+        const user = Cookies.get('username');
+        setUsername(user ?? null)
+    }, [])
+
 
     const [movieTitle, setMovieTitle] = useState<string>("");
     const [movies, setMovies] = useState<movieType[]>([]);
@@ -53,16 +59,17 @@ export default function navbar() {
                     <Link href='/'>
                         <p className='font-bold hover:text-blue-400 transition-all duration-200'>Home</p>
                     </Link>
-                    {username == "guest" &&
-                        <Link href='/signup'>
-                            <p className='font-bold hover:text-blue-400  transition-all duration-200'>signup</p>
-                        </Link>
-                    }
-                    {username != "guest" &&
+
+                    {username ? (
                         <Link href={`/user/${username}`}>
-                            <p className='font-bold hover:text-blue-400 transition-all duration-200'>Profile</p>
+                            <p className='font-bold hover:text-blue-400  transition-all duration-200'>profile</p>
                         </Link>
+                    ) : (
+                        <Link href='signup'>
+                            <p className='font-bold hover:text-blue-400 transition-all duration-200'>signup</p>
+                        </Link>)
                     }
+
                     <Link href="/contribute">
                         <p className='font-bold hover:text-blue-400  transition-all duration-200'>contribute</p>
                     </Link>
@@ -92,7 +99,7 @@ export default function navbar() {
             </div >
             <div className={`text-white border-b-1  border-purple-900 bg-black transition-all duration-500 overflow-hiddenmd:hidden text-center overflow-hidden group-hover:text-black md:p-5
                  ${menuOpen ? "flex flex-col" : "hidden"}`}>
-                <Link href='/' onClick={() => { setMenuOpen(!menuOpen) }}>
+                <Link href={`/`} onClick={() => { setMenuOpen(!menuOpen) }}>
                     <p className="text-xl text-gray-400 m-2 mt-6 transition-all duration-200 hover:text-purple-400">Home</p>
                 </Link>
                 <Link href='/game' onClick={() => { setMenuOpen(!menuOpen) }}>
@@ -101,9 +108,17 @@ export default function navbar() {
                 <Link href='/contribute' onClick={() => { setMenuOpen(!menuOpen) }}>
                     <p className="text-xl text-gray-400 m-2 transition-all duration-200 hover:text-purple-400">Contribute</p>
                 </Link>
-                <Link href='/profile' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
-                </Link>
+
+                {username ? (
+                    <Link href={`/user/${username}`} onClick={() => { setMenuOpen(!menuOpen) }}>
+                        <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
+                    </Link>
+                ) : (
+                    <Link href='/signup' onClick={() => { setMenuOpen(!menuOpen) }}>
+                        <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">signup</p>
+                    </Link>
+                )}
+
             </div>
         </div>
     )
