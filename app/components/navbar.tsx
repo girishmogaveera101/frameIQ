@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from "lucide-react";
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 interface movieType {
     _id: number,
@@ -12,6 +13,9 @@ interface movieType {
 }
 
 export default function navbar() {
+
+    const searchParams = useSearchParams();
+    const username = searchParams.get('username') ?? 'guest';
 
     const [movieTitle, setMovieTitle] = useState<string>("");
     const [movies, setMovies] = useState<movieType[]>([]);
@@ -49,12 +53,16 @@ export default function navbar() {
                     <Link href='/'>
                         <p className='font-bold hover:text-blue-400 transition-all duration-200'>Home</p>
                     </Link>
-                    <Link href='/signup'>
-                        <p className='font-bold hover:text-blue-400  transition-all duration-200'>signup</p>
-                    </Link>
-                    {/* <Link href='/user/${username}'>
-                        <p className='font-bold hover:text-blue-400 transition-all duration-200'>Profile</p>
-                    </Link> */}
+                    {username == "guest" &&
+                        <Link href='/signup'>
+                            <p className='font-bold hover:text-blue-400  transition-all duration-200'>signup</p>
+                        </Link>
+                    }
+                    {username != "guest" &&
+                        <Link href={`/user/${username}`}>
+                            <p className='font-bold hover:text-blue-400 transition-all duration-200'>Profile</p>
+                        </Link>
+                    }
                     <Link href="/contribute">
                         <p className='font-bold hover:text-blue-400  transition-all duration-200'>contribute</p>
                     </Link>

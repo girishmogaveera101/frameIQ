@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Loading from '../components/loading'
 import Link from 'next/link'
+import Navbar from '../components/navbar'
+
 
 
 
@@ -65,6 +67,7 @@ function page() {
 
     return (
         <>
+        <Navbar/>
             <form onSubmit={handleSignup} className="flex flex-col justify-center items-center">
                 <div className='mt-30 ml-[0%] border-0 h-130 md:h-150 justify-center items-center flex-col flex w-[90%]'>
                     <div className="h-100 rounded-2xl flex flex-col shadow-2xl shadow-black justify-center items-center bg-black w-[90%] md:w-150">

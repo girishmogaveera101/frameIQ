@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Loading from '../components/loading'
+import Navbar from '../components/navbar'
+
 
 interface MovieType {
     key?: number;
@@ -139,7 +141,7 @@ function page() {
         <>
 
             {loadingStatus && <Loading />}
-
+<Navbar/>
 
             {/* <center> */}
             <div className="border-black border-2 md:h-full md:w-full w-full bg-[rgb(251,207,255)] pt-20 flex flex-row flex-wrap md:justify-evenly md:items-left justify-start items-center">
