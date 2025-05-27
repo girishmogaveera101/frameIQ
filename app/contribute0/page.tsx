@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar'
+import { Suspense } from 'react';
+
 
 export default function page() {
 
@@ -26,9 +28,9 @@ export default function page() {
                     title: title,
                     imageURL: imageURL,
                     rating: rating,
-                    description:description,
-                    releaseDate:releaseDate,
-                    director:director
+                    description: description,
+                    releaseDate: releaseDate,
+                    director: director
 
                 }
             )
@@ -40,7 +42,9 @@ export default function page() {
 
     return (
         <>
-            <Navbar />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+            </Suspense>
             <p className="text-3xl text-black font-bold ml-[5%] mt-20">Contribute to our app</p>
             <div className='text-[rgb(255,255,255)] w-[90%] md:w-[35%] mt-5 ml-[5%] rounded-xl
              bg-[rgb(12,3,36)]  pt-3 px-10 md:px-20'>
@@ -62,7 +66,7 @@ export default function page() {
                         <p className="text-xl mt-4">Description [optional]</p>
                         <input type="text" value={description} onChange={(e) => { setDescription(e.target.value) }}
                             className='border font-bold h-10 pl-4 mt-2 md:w-[50%]'
-                            placeholder='Tony Stark is under pressure from various sources'/>
+                            placeholder='Tony Stark is under pressure from various sources' />
                         <p className="text-xl mt-4">Release Date [optional]</p>
                         <input type="text" value={releaseDate} onChange={(e) => { setReleaseDate(e.target.value) }}
                             className='border font-bold h-10 pl-4 mt-2 md:w-[50%]'
