@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
+import { Suspense } from 'react';
+
 
 
 interface MovieType {
@@ -27,12 +29,12 @@ function page() {
     const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
 
-    const [username, setUsername] = useState<string>("admin");
+    const [username, setUsername] = useState<string>("guest");
     const [director, setDirector] = useState<string>("-")
 
 
-    const randomPage = async () => {
-        const randomNumber = await Math.floor(Math.random() * 47);
+    const randomPage = () => {
+        const randomNumber = Math.floor(Math.random() * 47);
         setPageNumber(randomNumber)
     }
 
@@ -141,7 +143,9 @@ function page() {
         <>
 
             {loadingStatus && <Loading />}
-<Navbar/>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Navbar />
+            </Suspense>
 
             {/* <center> */}
             <div className="border-black border-2 md:h-full md:w-full w-full bg-[rgb(251,207,255)] pt-20 flex flex-row flex-wrap md:justify-evenly md:items-left justify-start items-center">
