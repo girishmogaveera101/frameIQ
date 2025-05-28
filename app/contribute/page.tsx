@@ -40,7 +40,7 @@ function page() {
 
 
     const randomPage = () => {
-        const randomNumber = Math.floor(Math.random() * 47);
+        const randomNumber = Math.floor(Math.random() * 131);
         setPageNumber(randomNumber)
     }
 
@@ -83,6 +83,7 @@ function page() {
 
 
     const getMovieData = async () => {
+        
         if (!idNumber) {
             alert("ID is null")
             return;
