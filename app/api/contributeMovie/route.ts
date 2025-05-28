@@ -20,6 +20,10 @@ export async function POST(req: Request) {
     console.log("inputs recieved")
     const client = await clientPromise;
     const db = client.db("frameFlix");
+    const findImageURL = await db.collection('latestMovies').findOne({imageURL:imageURL});
+    if(findImageURL!=null){
+      return NextResponse.json({ error: "Frame already exits in databse" }, { status: 403 });
+    }
     const newMovie = await db.collection("latestMovies").insertOne({
       key, title, imageURL, rating,
       releaseDate, description,
