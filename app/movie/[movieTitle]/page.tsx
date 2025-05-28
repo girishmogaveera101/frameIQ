@@ -5,13 +5,14 @@ import Navbar from '../../components/navbar'
 
 
 export default function ProductPage() {
-  const { username } = useParams();
-
+  const params = useParams();
+  const rawTitle = params.movieTitle as string;
+  const movieTitle = decodeURIComponent(rawTitle);
   return (
     <>
       <Navbar />
       <div className="mt-40 text-white p-30 pb-90 text-4xl">
-        Username : {username}
+        Title :  {movieTitle}
       </div>
     </>
   );

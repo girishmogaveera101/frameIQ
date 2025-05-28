@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from "lucide-react";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 
 interface movieType {
@@ -13,6 +14,8 @@ interface movieType {
 }
 
 export default function navbar() {
+
+    const router = useRouter();
 
     const [username, setUsername] = useState<string | null>(null);
     console.log("username : ", username)
@@ -52,10 +55,10 @@ export default function navbar() {
     return (
         <div className="flex z-50 flex-col fixed top-0 w-full">
             <div className='w-full z-10  text-white h-20 flex md:flex-row items-center bg-black border-b-1 border-b-gray-800'>
-                <p className='md:w-[60%] w-full bg-gradient-to-r from-purple-400 via-blue-500 bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-2xl md:pl-3 md:pr-10'>
+                <p className='md:w-[40%] w-full bg-gradient-to-r from-purple-400 via-blue-500 bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-2xl md:pl-3 md:pr-10'>
                     Frameiq
                 </p>
-                <div className=' w-[40%] align-right  md:flex justify-evenly hidden'>
+                <div className=' w-[60%] align-right  md:flex justify-evenly hidden'>
                     <Link href='/'>
                         <p className='font-bold hover:text-blue-400 transition-all duration-200'>Home</p>
                     </Link>
@@ -72,7 +75,7 @@ export default function navbar() {
                         <p className='font-bold hover:text-blue-400  transition-all duration-200'>contribute</p>
                     </Link>
                     <div className='flex'>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col border-0 md:w-[60%]">
                             <input type="text" className="border-l-1 border-purple-500 font-bold outline-0 text-white pl-3 mr-2 cursor-pointer"
                                 value={movieTitle ?? ""}
                                 onChange={(e) => {
@@ -86,8 +89,20 @@ export default function navbar() {
                                 ))}
                             </div>
                         </div>
-                        <input type='submit' className='bg-white hidden font-bold text-sxl rounded text-purple-700  w-25
-                        hover:bg-black hover:text-white transition-all duration-700 hover:border-black border-2' value="Find?" />
+                        <input type='submit' onClick={()=>
+                        {
+                            if(movieTitle!=""){
+                                router.push(`/movie/${movieTitle}`)
+                            }
+                            else{
+                                alert("Enter a movie title")
+                            }
+                        }
+                    }
+                            className='bg-purple-400 hidden md:flex font-bold text-sxl rounded text-black  w-25
+                        hover:bg-blue-600 hover:text-white transition-all duration-700 hover:border-black'
+                            value="search" />
+
                     </div>
                 </div>
                 <div className="group md:hidden">
