@@ -83,7 +83,7 @@ function page() {
 
 
     const getMovieData = async () => {
-        
+
         if (!idNumber) {
             alert("ID is null")
             return;
@@ -142,11 +142,22 @@ function page() {
             },
             body: JSON.stringify(movieData),
         })
+        if (response.status == 500) {
+            alert("Error")
+            return
+        }
+        if (response.status == 400) {
+            alert("Data not recieved properly")
+            return
+        }
+        if (response.status == 403) {
+            alert("Frame already exists in database");
+            return
+        }
         const resData = await response.json();
         console.log(movieData)
         console.log(resData)
         alert("Inserted to database")
-
     }
 
     return (
