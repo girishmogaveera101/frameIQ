@@ -59,7 +59,6 @@ export default function navbar() {
                     <Link href='/'>
                         <p className='font-bold hover:text-blue-400 transition-all duration-200'>Home</p>
                     </Link>
-
                     {username ? (
                         <Link href={`/user/${username}`}>
                             <p className='font-bold hover:text-blue-400  transition-all duration-200'>profile</p>
@@ -69,7 +68,6 @@ export default function navbar() {
                             <p className='font-bold hover:text-blue-400 transition-all duration-200'>signup</p>
                         </Link>)
                     }
-
                     <Link href="/contribute">
                         <p className='font-bold hover:text-blue-400  transition-all duration-200'>contribute</p>
                     </Link>
@@ -108,7 +106,6 @@ export default function navbar() {
                 <Link href='/contribute' onClick={() => { setMenuOpen(!menuOpen) }}>
                     <p className="text-xl text-gray-400 m-2 transition-all duration-200 hover:text-purple-400">Contribute</p>
                 </Link>
-
                 {username ? (
                     <Link href={`/user/${username}`} onClick={() => { setMenuOpen(!menuOpen) }}>
                         <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
@@ -118,7 +115,6 @@ export default function navbar() {
                         <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">signup</p>
                     </Link>
                 )}
-
             </div>
         </div>
     )

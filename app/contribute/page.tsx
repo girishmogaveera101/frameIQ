@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
+import Cookies from 'js-cookie';
+
 
 
 
@@ -28,8 +30,13 @@ function page() {
     const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
 
-    const [username, setUsername] = useState<string>("guest");
+    const [cookieUsername, setUsername] = useState<string>("guest");
     const [director, setDirector] = useState<string>("-")
+
+    useEffect(() => {
+        const user = Cookies.get('username') ?? "guest";
+        setUsername(user)
+    }, [])
 
 
     const randomPage = () => {
@@ -49,6 +56,7 @@ function page() {
             setLoadingStatus(false)
         }, 4000);
         getid();
+
         getMovieData();
 
     }, [])
@@ -107,9 +115,10 @@ function page() {
                 description: infoData.overview,
                 releaseDate: infoData.release_date,
                 director: director,
-                username: username
+                username: cookieUsername
             })
         const imageData = await imageRes.json();
+
         if (!imageData) {
             alert("Error");
             return;
@@ -117,6 +126,7 @@ function page() {
         for (let i = 0; i < imageData.length; i++) {
             setImgURLS((prev) => [...prev, imageData[i].file_path])
         }
+        console.log(movieData)
     }
 
     const uploadMovieData = async () => {
