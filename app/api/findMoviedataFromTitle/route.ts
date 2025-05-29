@@ -12,11 +12,11 @@ export async function POST(req: Request) {
         const client = await clientPromise;
         const db = client.db("frameFlix");
         const findMovie = await db.collection("latestMovies").findOne({ title: title });
-        console.log(findMovie)
+        console.log("data : ",findMovie)
         if (findMovie == null) {
             return NextResponse.json({ msg: "Movie not found" }, { status: 404 });
         }
-        return NextResponse.json({ findMovie }, { status: 200 });
+        return NextResponse.json({ findMovie}, { status: 200 });
 
     }
     catch (err) {
