@@ -22,7 +22,7 @@ export default function latestMovies() {
       const response = await fetch('/api/latestMovies');
       const resData = await response.json();
       setLatestMovies(resData);
-      console.log(resData)
+      // console.log(resData)
       // console.log("ll : ",latestMovies)
     } catch (err) {
       console.error("Brooo something broke 🤕", err);

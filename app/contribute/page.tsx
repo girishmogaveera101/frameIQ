@@ -73,7 +73,7 @@ function page() {
             body: JSON.stringify({ pageNumber }),
         });
         const resData = await response.json() as { id: number; title: string }[];
-        console.log(resData)
+        // console.log(resData)
         const newIds = resData.map((item) => item.id);
         const newTitles = resData.map((item) => item.title);
 
@@ -107,7 +107,7 @@ function page() {
         });
 
         const infoData = await infoRes.json();
-        console.log(infoData)
+        // console.log(infoData)
         setMovieData(
             {
                 key: infoData.id,
@@ -127,7 +127,7 @@ function page() {
         for (let i = 0; i < imageData.length; i++) {
             setImgURLS((prev) => [...prev, imageData[i].file_path])
         }
-        console.log(movieData)
+        // console.log(movieData)
     }
 
     const uploadMovieData = async () => {
@@ -155,8 +155,8 @@ function page() {
             return
         }
         const resData = await response.json();
-        console.log(movieData)
-        console.log(resData)
+        // console.log(movieData)
+        // console.log(resData)
         alert("Inserted to database")
     }
 

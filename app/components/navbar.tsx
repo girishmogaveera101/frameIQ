@@ -39,7 +39,7 @@ export default function navbar() {
             body: JSON.stringify({ title: title }),
         });
         const resData = await response.json();
-        console.log(resData);
+        // console.log(resData);
         setMovies(resData.existingMovie);
 
     }

@@ -46,7 +46,7 @@ export default function Home() {
         const resData: movieDataType = await response.json();
         if (resData) {
             setMovie(resData);
-            console.log(resData)
+            // console.log(resData)
         }
     };
 
@@ -69,7 +69,7 @@ export default function Home() {
             body: JSON.stringify({ title: title }),
         });
         const resData = await response.json();
-        console.log(resData);
+        // console.log(resData);
         setMovies(resData.existingMovie);
 
     }

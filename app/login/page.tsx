@@ -31,7 +31,7 @@ function page() {
             body: JSON.stringify({ username, password }),
         });
         const resData = await response.json();
-        console.log(resData)
+        // console.log(resData)
         if (response.status == 404) {
             console.log("Account not found")
             setTimeout(() => {
