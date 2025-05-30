@@ -10,8 +10,6 @@ import Navbar from '../components/navbar'
 
 
 
-
-
 function page() {
 
     const router = useRouter()
