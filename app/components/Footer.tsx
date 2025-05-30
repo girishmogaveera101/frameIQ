@@ -34,7 +34,7 @@ function Footer() {
             </div>
 
             <div className="text-sm mt-4">
-                <p className='text-xs mt-4 text-gray-600'>&copy; {new Date().getFullYear()} FameIQ. All rights reserved.</p>
+                <p className='text-xs mt-4 text-gray-600'>&copy; {new Date().getFullYear()}ping localhost:3000</p>
             </div>
         </footer>
     )

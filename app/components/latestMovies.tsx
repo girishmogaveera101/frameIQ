@@ -11,12 +11,11 @@ interface DataType {
   username: string;
   releaseDate: string;
 }
+
 export default function latestMovies() {
 
 
-
   const [latestMovies, setLatestMovies] = useState<DataType[]>([]);
-
 
   const f1 = async () => {
     try {
@@ -59,7 +58,6 @@ export default function latestMovies() {
                 key={index}
                 className="group card md:h-100 min-w-[400] md:m-5 mx-3 md:min-w-[600px] h-[250px] flex flex-col p-4 justify-end items-start overflow-hidden rounded-xl relative"
               >
-                {/* Background Image Layer */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-120"
                   style={{
@@ -67,11 +65,10 @@ export default function latestMovies() {
                   }}
                 />
 
-                {/* Overlay for content */}
                 <div className='flex flex-row'>
                   <div className="relative  z-10 text-white">
                     <p className="font-bold text-3xl md:text-6xl ">
-                      {movie.title.slice(0,25)}{movie.title.length>25&&"..."}
+                      {movie.title.slice(0, 25)}{movie.title.length > 25 && "..."}
                     </p>
                   </div>
 
