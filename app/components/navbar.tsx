@@ -18,7 +18,7 @@ export default function navbar() {
     const router = useRouter();
 
     const [username, setUsername] = useState<string | null>(null);
-    console.log("username : ", username)
+    // console.log("username : ", username)
 
     useEffect(() => {
         const user = Cookies.get('username');
