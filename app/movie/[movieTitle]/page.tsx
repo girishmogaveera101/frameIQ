@@ -39,6 +39,14 @@ export default function ProductPage() {
         },
         body: JSON.stringify({ title: movieTitle }),
       });
+      if(response.status==404){
+        alert("Movie not found!")
+        return;
+      }
+      if(response.status==500){
+        alert("Error");
+        return;
+      }
       const resData = await response.json();
       setMovieData(resData.findMovie);
     }
@@ -55,16 +63,14 @@ export default function ProductPage() {
         <div className="mt-10 border-0 md:w-[40%] flex flex-col text-white pl-30 pb-30 space-y-15 text-3xl">
           <p className="text-7xl font-extrabold text-blue-400">{movieData?.title}</p>
           <p className="text-xl font-extrabold text-purple-200">{movieData?.description}</p>
-          <p className="text-2xl font-extrabold text-purple-200">released :  {movieData?.releaseDate}</p>
+          <p className="text-2xl font-extrabold text-purple-200">Released :  {movieData?.releaseDate}</p>
           <p className="text-2xl font-extrabold text-purple-200">IMDB Rating :  {movieData?.rating?.toFixed(1)}</p>
           <p className="text-2xl font-extrabold text-purple-200">Contributer :  @{movieData?.username}</p>
         </div>
         <div className="w-[60%] border-0 overflow-hidden flex justify-center items-start mt-40">
-          {/* <div className="h-[150px"> */}
             <img src={`${movieData?.imageURL}`}
               className='border-0 w-[70%]'
               alt="movie screenshot" />
-          {/* </div> */}
         </div>
       </div>
     </>

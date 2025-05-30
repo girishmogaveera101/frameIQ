@@ -5,7 +5,7 @@ export async function POST(req: Request) {
     try {
         const { title } = await req.json();
         if (!title) {
-            return NextResponse.json({ error: "details are empty" }, { status: 400 });
+            return NextResponse.json({ error: "Details are empty" }, { status: 400 });
         }
         console.log(title)
         // mongodb connection

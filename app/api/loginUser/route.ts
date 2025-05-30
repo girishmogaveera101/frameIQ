@@ -5,7 +5,7 @@ export async function POST(req: Request) {
     try {
         const { username, password } = await req.json();
         if (!username || !password) {
-            return NextResponse.json({ error: "details are empty" }, { status: 400 });
+            return NextResponse.json({ error: "Details are empty" }, { status: 400 });
         }
         console.log(username, password)
         // mongodb connection
