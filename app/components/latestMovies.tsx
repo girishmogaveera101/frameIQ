@@ -65,6 +65,7 @@ export default function latestMovies() {
                   }}
                 />
 
+                
                 <div className='flex flex-row'>
                   <div className="relative  z-10 text-white">
                     <p className="font-bold text-3xl md:text-6xl ">
@@ -86,7 +87,6 @@ export default function latestMovies() {
               </div>
 
             ))
-
           ) : (
             <p className='text-purple-300 text-2xl text-center font-extrabold'>loading..</p>
           )}
