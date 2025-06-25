@@ -3,7 +3,7 @@ import clientPromise from "@/lib/mongodb";
 
 export async function PUT(req: Request) {
     try {
-        const { username, fullname, age, email, phone, bio } = await req.json();
+        const { username, fullname, age, email, phone, bio, profilepic } = await req.json();
         if (!username) {
             return NextResponse.json({ error: "Details are empty" }, { status: 400 });
         }
@@ -20,6 +20,7 @@ export async function PUT(req: Request) {
                     email: email,
                     phone: phone,
                     bio: bio,
+                    profilepic:profilepic,
                     updatedAt: new Date(),
                 },
             },
