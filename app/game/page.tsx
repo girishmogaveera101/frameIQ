@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
+import Cookies from 'js-cookie';
 
 
 
@@ -33,9 +34,35 @@ interface movieDataType {
 
 export default function Home() {
 
+    const [username, setUsername] = useState<string | null>(null);
+
+    const [highestRecord, setHighestRecord] = useState<number>(0);
+    useEffect(() => {
+        const user = Cookies.get('username');
+        setUsername(user ?? null)
+
+        const getHighestRecord = async () => {
+            const response = await fetch("/api/getHighestRecord");
+            const resData = await response.json();
+            console.log(resData);
+            setHighestRecord(resData.highrecord[0]?.record)
+
+        }
+        getHighestRecord()
+    }, [])
+
     const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
+    const [showPopup, setShowPopup] = useState(false);
+    const [ notifBgColor, setNotifBgColor] = useState<string>("green")
+    const [ notifMsg, setNotifMsg] = useState<string>("")
 
+    const [today, setToday] = useState('');
 
+    useEffect(() => {
+        const now = new Date();
+        const formatted = now.toISOString().split('T')[0]; // e.g. "2025-06-25"
+        setToday(formatted);
+    }, []);
     const [movie, setMovie] = useState<movieDataType | null>(null);
     const [hideBarStatus, setHideBarStatus] = useState<string>("hidden");
 
@@ -74,6 +101,21 @@ export default function Home() {
 
     }
 
+    const sendRecord = async (username: string, record: number) => {
+        const response = await fetch("/api/sendRecord", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: username,
+                record: record,
+                date: today
+            }),
+        });
+        const resData = await response.json();
+    }
+
 
 
 
@@ -98,8 +140,6 @@ export default function Home() {
 
     const [attempts, setAttempts] = useState<number>(0);
     const [streak, setStreak] = useState<number>(0);
-    const [totalAttempts, setTotalAttempts] = useState<number>(0);
-    const [accuracy, setAccuracy] = useState<number>(0);
     const [totalRight, setTotalRight] = useState<number>(0);
     const [besttreak, setBestStreak] = useState<number>(0);
 
@@ -108,13 +148,12 @@ export default function Home() {
         if (attempts < 3) {
             if (movieTitle == movie?.title) {
                 const newRight = totalRight + 1;
-                const newTotalAttempts = totalAttempts + 1;
-                const newAccuracy = (newRight / newTotalAttempts) * 100;
                 const newstreak = streak + 1;
 
                 setTotalRight(newRight)
-                setTotalAttempts(newTotalAttempts);
-                setAccuracy(newAccuracy)
+                setShowPopup(true);
+                setNotifBgColor("green")
+                setNotifMsg("You are right!!")
                 setMovieTitle("");
                 setStreak(newstreak)
                 setAttempts(0)
@@ -122,22 +161,32 @@ export default function Home() {
                     setBestStreak(newstreak)
                 }
                 handleSearch();
+                setTimeout(() => {
+                    setShowPopup(false);
+                },2000); 
                 return
             }
             else {
                 setAttempts(attempts + 1)
                 if (attempts == 2) {
-                    const newTotalAttempts = totalAttempts + 1;
-                    const newAccuracy = (totalRight / newTotalAttempts) * 100;
-
-                    setTotalAttempts(newTotalAttempts);
-                    setAttempts(0)
-                    setMovieTitle("")
-                    setStreak(0);
-                    setAccuracy(newAccuracy)
-                    handleSearch();
+                    if (besttreak > 4) {
+                        sendRecord(username ? username : "guest", besttreak)
+                    }
+                    setShowPopup(true);
+                    setNotifBgColor("red");
+                    setNotifMsg("You LOST!!!")
+                    setTimeout(() => {
+                        setShowPopup(false);
+                        window.location.reload();
+                    },2000); 
                     return
                 }
+                setShowPopup(true);
+                setNotifBgColor("red");
+                setNotifMsg("You are wrong!!!")
+                setTimeout(() => {
+                    setShowPopup(false);
+                },2000); 
                 return
             }
         }
@@ -209,7 +258,7 @@ export default function Home() {
 
 
                 <div className="border-0 border-black md:w-[45%] w-[96%] p-2 flex flex-col justify-start items-center mt-3 md:h-full">
-                    <div className=" md:w-[70%] mt-5 w-full flex flex-col md:border-2 border-1 border-gray-800 md:border-purple-700 shadow-2xl shadow-black  rounded-[30px] bg-black md:ml-[2%] md:h-130 p-3">
+                    <div className=" md:w-[70%] mt-5 w-full flex flex-col md:border-2 border-1 border-gray-800 md:border-purple-700 shadow-2xl shadow-black  rounded-[30px] bg-black md:ml-[2%] md:h-110 p-3">
                         <p className="text-center text-purple-400 md:text-purple-700 md:border-b-0 md:text-4xl md:mt-3 md:pb-7 pb-3 border-[rgb(183,0,255)] text-2xl font-extrabold">Game Statistics</p>
                         <div className="flex flex-row mt-3">
                             <p className="w-[60%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Attempts</p>
@@ -220,29 +269,29 @@ export default function Home() {
                             <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{streak}</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[60%]  text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Accuracy %</p>
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{accuracy.toFixed(2)}%</p>
-                        </div>
-                        <div className="flex flex-row m-2">
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Best Streak </p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Your Record</p>
                             <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{besttreak}</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Total attempts</p>
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{totalAttempts}</p>
+                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Highest record</p>
+                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{highestRecord}</p>
                         </div>
 
                     </div>
                     <div className="md:w-[70%] flex flex-col w-full mb-10 h-35 md:border-2 border-1 border-gray-800 md:border-purple-700 md:border-b-2 shadow-2xl shadow-black rounded-[30px] bg-black md:ml-[2%] md:h-35 mt-5 p-3">
                         <p className="md:text-xl md:border-b-0 border-[rgb(183,0,255)] text-center text-purple-700 md:mb-0 font-extrabold">Description</p>
-                        <p className="md:text-xl ml-10 mt-4 mb-4 md:mb-2 font-extrabold">Released : {movie?.director && movie?.releaseDate.slice(0, 4)}</p>
-                        <p className="md:text-xl ml-10 font-extrabold">Rating : {movie?.rating && movie?.rating.toFixed(1)}</p>
+                        <p className="md:text-xl md:text-purple-300 ml-10 mt-4 mb-4 md:mb-2 font-extrabold">Released : {movie?.director && movie?.releaseDate.slice(0, 4)}</p>
+                        <p className="md:text-xl md:text-purple-300 ml-10 font-extrabold">Rating : {movie?.rating && movie?.rating.toFixed(1)}</p>
                     </div>
 
                 </div>
 
 
-
+                {showPopup && (
+                    <div className={`fixed top-10 left-1/2 transform -translate-x-1/2 bg-${notifBgColor}-700 text-white font-bold px-6 py-3 rounded-2xl shadow-lg z-50 animate-fadeIn`}>
+                        {notifMsg}
+                    </div>
+                )}
 
 
 
