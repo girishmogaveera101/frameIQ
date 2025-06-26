@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
 import Cookies from 'js-cookie';
+import PopUp from '../components/popup'
 
 
 
@@ -53,8 +54,8 @@ export default function Home() {
 
     const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
     const [showPopup, setShowPopup] = useState(false);
-    const [ notifBgColor, setNotifBgColor] = useState<string>("green")
-    const [ notifMsg, setNotifMsg] = useState<string>("")
+    const [isError, setIsError] = useState<boolean>(true)
+    const [notifMsg, setNotifMsg] = useState<string>("")
 
     const [today, setToday] = useState('');
 
@@ -73,7 +74,6 @@ export default function Home() {
         const resData: movieDataType = await response.json();
         if (resData) {
             setMovie(resData);
-            // console.log(resData)
         }
     };
 
@@ -96,7 +96,6 @@ export default function Home() {
             body: JSON.stringify({ title: title }),
         });
         const resData = await response.json();
-        // console.log(resData);
         setMovies(resData.existingMovie);
 
     }
@@ -152,7 +151,7 @@ export default function Home() {
 
                 setTotalRight(newRight)
                 setShowPopup(true);
-                setNotifBgColor("green")
+                setIsError(false)
                 setNotifMsg("You are right!!")
                 setMovieTitle("");
                 setStreak(newstreak)
@@ -163,7 +162,7 @@ export default function Home() {
                 handleSearch();
                 setTimeout(() => {
                     setShowPopup(false);
-                },2000); 
+                }, 2000);
                 return
             }
             else {
@@ -173,20 +172,20 @@ export default function Home() {
                         sendRecord(username ? username : "guest", besttreak)
                     }
                     setShowPopup(true);
-                    setNotifBgColor("red");
+                    setIsError(true);
                     setNotifMsg("You LOST!!!")
                     setTimeout(() => {
                         setShowPopup(false);
                         window.location.reload();
-                    },2000); 
+                    }, 2000);
                     return
                 }
                 setShowPopup(true);
-                setNotifBgColor("red");
+                setIsError(true);
                 setNotifMsg("You are wrong!!!")
                 setTimeout(() => {
                     setShowPopup(false);
-                },2000); 
+                }, 2000);
                 return
             }
         }
@@ -287,15 +286,11 @@ export default function Home() {
                 </div>
 
 
+
+
                 {showPopup && (
-                    <div className={`fixed top-10 left-1/2 transform -translate-x-1/2 bg-${notifBgColor}-700 text-white font-bold px-6 py-3 rounded-2xl shadow-lg z-50 animate-fadeIn`}>
-                        {notifMsg}
-                    </div>
+                    <PopUp errorStatus={isError} msg={notifMsg} />
                 )}
-
-
-
-
 
 
 

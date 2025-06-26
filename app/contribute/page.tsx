@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Loading from '../components/loading'
 import Navbar from '../components/navbar'
 import Cookies from 'js-cookie';
+import PopUp from '../components/popup'
+
 
 
 
@@ -29,9 +31,24 @@ function page() {
 
     const [loadingStatus, setLoadingStatus] = useState<boolean>(true);
 
+    const [showPopup, setShowPopup] = useState(false);
+    const [isError, setIsError] = useState<boolean>(true)
+    const [notifMsg, setNotifMsg] = useState<string>("")
+
 
     const [cookieUsername, setUsername] = useState<string>("guest");
     const [director, setDirector] = useState<string>("-")
+
+    const triggerPopup = (isError: boolean, msg: string) => {
+        setIsError(isError);
+        setNotifMsg(msg);
+        setShowPopup(true);
+
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 2000);
+    };
+
 
     useEffect(() => {
         const user = Cookies.get('username') ?? "guest";
@@ -85,7 +102,7 @@ function page() {
     const getMovieData = async () => {
 
         if (!idNumber) {
-            alert("ID is null")
+            triggerPopup(true, "ID is null!!");
             return;
         }
         setImgURLS([]);
@@ -107,7 +124,6 @@ function page() {
         });
 
         const infoData = await infoRes.json();
-        // console.log(infoData)
         setMovieData(
             {
                 key: infoData.id,
@@ -121,18 +137,17 @@ function page() {
         const imageData = await imageRes.json();
 
         if (!imageData) {
-            alert("Error");
+            triggerPopup(true, "Error Occured!!");
             return;
         }
         for (let i = 0; i < imageData.length; i++) {
             setImgURLS((prev) => [...prev, imageData[i].file_path])
         }
-        // console.log(movieData)
     }
 
     const uploadMovieData = async () => {
         if (movieData?.imageURL == undefined) {
-            alert("Error")
+            triggerPopup(true, "Image Not selected!!");
             return;
         }
         const response = await fetch('/api/contributeMovie', {
@@ -143,21 +158,19 @@ function page() {
             body: JSON.stringify(movieData),
         })
         if (response.status == 500) {
-            alert("Error")
+            triggerPopup(true, "Error 500");
             return
         }
         if (response.status == 400) {
-            alert("Data not recieved properly")
+            triggerPopup(true, "Data not recieved properly");
             return
         }
         if (response.status == 403) {
-            alert("Frame already exists in database");
+            triggerPopup(true, "Frame already exists in database");
             return
         }
         const resData = await response.json();
-        // console.log(movieData)
-        // console.log(resData)
-        alert("Inserted to database")
+        triggerPopup(false, "Frame Inserted to database");
     }
 
     return (
@@ -170,21 +183,21 @@ function page() {
                 <div className="md:w-[25%]  w-[70%] flex flex-row flex-wrap justify-end items-center">
                     <button onClick={randomPage}
                         className="rounded  m-3 md:h-20 h-10 md:text-xl text-xs hover:bg-purple-800 font-bold transition-all duration-300 md:w-30 w-18 bg-black text-white">
-                        new page
+                        1. new page
                     </button>
 
                     <button onClick={getid}
                         className="rounded  m-3 md:px-0 md:h-20 h-10 md:text-xl text-xs hover:bg-purple-800 font-bold transition-all duration-300 md:w-70 w-38 bg-blue-500 text-white">
-                        Get IDs for Page{pageNumber}
+                        2. Get new Movies
                     </button>
 
                     <button onClick={uploadMovieData}
                         className="rounded  m-3 md:h-20 h-10 md:text-xl text-xs hover:bg-black font-bold transition-all duration-300 md:w-70 w-38 bg-green-700 text-white">
-                        Upload Movie Data
+                        4. Upload Movie Data
                     </button>
                     <button onClick={getMovieData}
                         className="rounded  m-3  md:px-0 md:h-20 h-10 md:text-xl text-xs hover:bg-purple-800 font-bold transition-all duration-300 md:w-30 w-18 bg-black text-white">
-                        Get Data
+                        3. Get Movie Data
                     </button>
                 </div>
 
@@ -245,6 +258,10 @@ function page() {
                     </div>
                 ))}
             </div>
+
+            {showPopup && (
+                <PopUp errorStatus={isError} msg={notifMsg} />
+            )}
 
 
         </>

@@ -13,7 +13,7 @@ export default function Home() {
       <Heading />
       <LatestMovies />
       <HomeButtons />
-      <ScoreBoard/>
+      {/* <ScoreBoard/> */}
     </div>
   );
 }
