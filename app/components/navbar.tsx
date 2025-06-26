@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import TextLogoImage from '../../public/images/logo/logoForNav.png'
 
 interface movieType {
     _id: number,
@@ -55,9 +56,9 @@ export default function navbar() {
     return (
         <div className="flex z-50 flex-col fixed top-0 w-full">
             <div className='w-full z-10  text-white h-20 flex md:flex-row items-center bg-black border-b-1 border-b-gray-800'>
-                <p className='md:w-[40%] w-full bg-gradient-to-r from-purple-400 via-blue-500 bg-clip-text text-transparent md:ml-30 ml-10 text-left md:text-left font-bold md:text-3xl text-2xl md:pl-3 md:pr-10'>
-                    Frameiq
-                </p>
+                <div className="md:w-[40%] w-full">
+                    <img className='md:w-50 w-40 md:ml-30 ml-10 ' src="/images/logo/logoForNav.png" alt="Website Logo" />
+                </div>
                 <div className=' w-[60%] align-right  md:flex justify-evenly hidden'>
                     <Link href='/'>
                         <p className='font-bold hover:text-blue-400 transition-all duration-200'>Home</p>
@@ -89,16 +90,15 @@ export default function navbar() {
                                 ))}
                             </div>
                         </div>
-                        <input type='submit' onClick={()=>
-                        {
-                            if(movieTitle!=""){
+                        <input type='submit' onClick={() => {
+                            if (movieTitle != "") {
                                 router.push(`/movie/${movieTitle}`)
                             }
-                            else{
+                            else {
                                 alert("Enter a movie title")
                             }
                         }
-                    }
+                        }
                             className='bg-purple-400 hidden md:flex font-bold text-sxl rounded text-black  w-25
                         hover:bg-blue-600 hover:text-white transition-all duration-700 hover:border-black'
                             value="search" />
