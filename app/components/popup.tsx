@@ -20,7 +20,7 @@ interface PopUpProps {
     if (!showPopUp) return null
 
     return (
-        <div className={`fixed ${errorStatus? 'bg-red-600': 'bg-green-600'} rounded top-30 z-50 left-1/2 transform -translate-1/2 py-3 px-10`}>
+        <div className={`fixed ${errorStatus? 'bg-red-600': 'bg-green-600'} rounded text-center top-30 z-50 left-1/2 transform -translate-1/2 py-3 px-10`}>
             <p className="font-extrabold">{msg}</p>
         </div>
     )
