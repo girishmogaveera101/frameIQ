@@ -1,9 +1,9 @@
 "use client"
 import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation';
 import Navbar from '../../components/navbar';
 import { useRouter } from 'next/navigation'
-import PopUp from '../../components/popup'
+import PopUp from '../../components/popup';
+import Cookies from 'js-cookie';
 
 
 interface UserDetailstype {
@@ -18,7 +18,8 @@ interface UserDetailstype {
 
 export default function ProductPage() {
   const router = useRouter()
-  const { username } = useParams();
+
+  const username = Cookies.get('username');
 
   const [userDetails, setuserDetails] = useState<UserDetailstype | null>(null);
   const [isProfilePicMenuOpen, setIsProfilePicMenuOpen] = useState<boolean>(false);
@@ -27,7 +28,7 @@ export default function ProductPage() {
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [bio, setBio] = useState<string>("");
-  const [profilePic, setProfilePic] = useState<number>(0)
+  const [profilePic, setProfilePic] = useState<number>(3)
 
   const [showPopup, setShowPopup] = useState(false);
   const [isError, setIsError] = useState<boolean>(true)
@@ -152,7 +153,7 @@ export default function ProductPage() {
             value="Update Profile" onClick={updateProfile} />
           <input type="submit"
             className='bg-red-600 ml-5 hover:bg-red-800 transition-all duration-200 rounded py-1 px-5 mt-10'
-            value="logout" onClick={() => { router.push('/login') }} />
+            value="logout" onClick={() => { router.push('/login');Cookies.remove('username'); }} />
 
 
         </div>
