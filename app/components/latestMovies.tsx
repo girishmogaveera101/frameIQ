@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import Loading from '../components/loading'
 
 interface DataType {
   _id: string;
@@ -16,6 +17,7 @@ export default function latestMovies() {
 
 
   const [latestMovies, setLatestMovies] = useState<DataType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const f1 = async () => {
     try {
@@ -24,6 +26,7 @@ export default function latestMovies() {
       setLatestMovies(resData);
       // console.log(resData)
       // console.log("ll : ",latestMovies)
+      setIsLoading(false);
     } catch (err) {
       console.error("Brooo something broke 🤕", err);
     }
@@ -36,6 +39,7 @@ export default function latestMovies() {
 
   return (
     <div className=''>
+      {isLoading&& <Loading/>}
       <p className='text-[rgb(190,190,190)] mt-10 md:mt-0 text-xl md:text-xl text-center md:text-left font-bold md:ml-20 '>Latest contributes</p>
       <div className="mt-5 w-[100%] ml-[0%] md:h-130 h-75  bg-[rgb(0,0,0)] flex overflow-x-auto overflow-hidden items-center space-x-4 p-4">
         <style jsx>{`
@@ -65,7 +69,7 @@ export default function latestMovies() {
                   }}
                 />
 
-                
+
                 <div className='flex flex-row'>
                   <div className="relative  z-10 text-white">
                     <p className="font-bold text-3xl md:text-6xl ">
@@ -87,8 +91,8 @@ export default function latestMovies() {
               </div>
 
             ))
-          ) : (
-            <p className='text-purple-300 text-2xl text-center font-extrabold'>loading..</p>
+          ):(
+            <div></div>
           )}
         </div>
       </div>
