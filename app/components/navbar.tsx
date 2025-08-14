@@ -109,33 +109,33 @@ export default function navbar() {
                     {menuOpen ?
                         (
                             <X size={36} onClick={() => setMenuOpen(!menuOpen)}
-                                className="menuIcon  hover:text-purple-400 m-5 cursor-pointer" />
+                                className="menuIcon  text-purple-400 m-5 cursor-pointer" />
                         ) : (
                             <Menu size={36} onClick={() => setMenuOpen(!menuOpen)}
-                                className="menuIcon  hover:text-purple-400 m-5 cursor-pointer" />
+                                className="menuIcon  text-purple-400 m-5 cursor-pointer" />
                         )
                     }
 
                 </div>
             </div >
-            <div className={`text-white border-b-1  border-purple-900 bg-black fixed w-full transition-all duration-500 overflow-hidden md:hidden text-center group-hover:text-black
-                 ${menuOpen ? "top-[8%]" : "-top-[15%]"}`}>
+            <div className={`text-white border-b-1  border-purple-900 bg-black fixed w-full transition-all duration-500 ease-in-out md:hidden text-center group-hover:text-black
+                 ${menuOpen ? "top-[8%]" : "-top-[20%]"}`}>
                 <Link href={`/`} onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl text-gray-400 m-2 mt-6 transition-all duration-200 hover:text-purple-400">Home</p>
+                    <p className="text-xl text-gray-400 m-7 mt-10 transition-all duration-200 hover:text-purple-400">Home</p>
                 </Link>
                 <Link href='/game' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl text-gray-400 m-2 transition-all duration-200 hover:text-purple-400">Game</p>
+                    <p className="text-xl text-gray-400 m-7 transition-all duration-200 hover:text-purple-400">Game</p>
                 </Link>
                 <Link href='/contribute' onClick={() => { setMenuOpen(!menuOpen) }}>
-                    <p className="text-xl text-gray-400 m-2 transition-all duration-200 hover:text-purple-400">Contribute</p>
+                    <p className="text-xl text-gray-400 m-7 transition-all duration-200 hover:text-purple-400">Contribute</p>
                 </Link>
                 {username ? (
                     <Link href={`/user/${username}`} onClick={() => { setMenuOpen(!menuOpen) }}>
-                        <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
+                        <p className="text-xl text-gray-400 m-7 mb-6 transition-all duration-200 hover:text-purple-400">Profile</p>
                     </Link>
                 ) : (
                     <Link href='/signup' onClick={() => { setMenuOpen(!menuOpen) }}>
-                        <p className="text-xl text-gray-400 m-2 mb-6 transition-all duration-200 hover:text-purple-400">signup</p>
+                        <p className="text-xl text-gray-400 m-7 mb-10 transition-all duration-200 hover:text-purple-400">signup</p>
                     </Link>
                 )}
             </div>
