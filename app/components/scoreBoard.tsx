@@ -35,17 +35,18 @@ function scoreBoard() {
       
       <div className="h-[10%] w-full">
         <div className="text-gray-900 flex flex-row justify-between">
-          <p className="text-purple-400 font-extrabold md:text-2xl text-xl w-[25%] mb-5">Rank</p>
-          <p className="text-purple-400 font-extrabold md:text-2xl text-xl w-[45%] text-left">Username</p>
-          <p className="text-purple-400 font-extrabold md:text-2xl text-xl w-[30%]">Score</p>
+          <p className="text-purple-400 font-extrabold text-xl w-[25%] mb-5">Rank</p>
+          <p className="text-purple-400 font-extrabold text-xl w-[45%] text-left">Username</p>
+          <p className="text-purple-400 font-extrabold text-xl w-[30%]">Score</p>
         </div>
       </div>
 
       <div className="overflow-scroll h-[80%] w-full">
       {scoreBoardData.map((data, index) => (
         <div key={data._id} className="text-gray-900 flex flex-row justify-between">
-          <p className="text-white text-xl w-[25%] mb-5">#{index + 1}</p>
-          <p className="text-white text-xl w-[45%] text-left">{data.username}</p>
+          <p className="text-white text-xl w-[20%] mb-5">#{index + 1}</p>
+          <img src={`/images/profilePictures/pfl${index+1}.jpeg`} className='w-[10%] h-[10%] mt-1 mr-5 rounded-full'/>
+          <p className="text-white text-xl w-[40%] text-left">{data.username}</p>
           <p className="text-white text-xl w-[30%]">{data.record}</p>
         </div>
       ))}
