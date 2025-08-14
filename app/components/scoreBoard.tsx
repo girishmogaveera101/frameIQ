@@ -30,7 +30,7 @@ function scoreBoard() {
 
 
   return (
-    <div className=' md:w-[15%] w-[80%] ml-[10%] mb-30 md:ml-[5%] md:mb-30 md:mt-10 p-4 shadow-black overflow-hidden h-100 bg-black rounded-2xl shadow-2xl'>
+    <div className=' md:w-[25%] w-[80%] ml-[10%] mb-30 md:ml-[5%] md:mb-30 md:mt-10 p-4 shadow-black overflow-hidden h-100 bg-black rounded-2xl shadow-2xl'>
       <p className="text-center h-[10%] text-red-500 font-extrabold text-2xl md:text-2xl">Leaderboard</p>
       
       <div className="h-[10%] w-full">
@@ -43,11 +43,11 @@ function scoreBoard() {
 
       <div className="overflow-scroll h-[80%] w-full">
       {scoreBoardData.map((data, index) => (
-        <div key={data._id} className="text-gray-900 flex flex-row justify-between">
-          <p className="text-white text-xl w-[20%] mb-5">#{index + 1}</p>
-          <img src={`/images/profilePictures/pfl${index+1}.jpeg`} className='w-[10%] h-[10%] mt-1 mr-5 rounded-full'/>
+        <div key={data._id} className="text-gray-900 border-0 mb-5 border-red-700 flex flex-row justify-center items-center">
+          <p className="text-white text-xl w-[20%]">#{index + 1}</p>
+          <img src={`/images/profilePictures/pfl${index+2}.jpeg`} className='w-[10%] h-[20%] mr-5 rounded-full'/>
           <p className="text-white text-xl w-[40%] text-left">{data.username}</p>
-          <p className="text-white text-xl w-[30%]">{data.record}</p>
+          <p className="text-white text-xl w-[20%]">{data.record}</p>
         </div>
       ))}
       </div>
