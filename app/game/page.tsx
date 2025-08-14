@@ -172,7 +172,7 @@ export default function Home() {
             else {
                 setAttempts(attempts + 1)
                 if (attempts == 2) {
-                    if (besttreak > 4) {
+                    if (besttreak > 1) {
                         sendRecord(username ? username : "guest", besttreak)
                     }
                     setShowPopup(true);
