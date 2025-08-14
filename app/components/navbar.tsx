@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
@@ -106,12 +106,20 @@ export default function navbar() {
                     </div>
                 </div>
                 <div className="group md:hidden">
-                    <Menu size={36} onClick={() => setMenuOpen(!menuOpen)}
-                        className="menuIcon transition-all duration-200 hover:text-purple-400 m-5 cursor-pointer" />
+                    {menuOpen ?
+                        (
+                            <X size={36} onClick={() => setMenuOpen(!menuOpen)}
+                                className="menuIcon  hover:text-purple-400 m-5 cursor-pointer" />
+                        ) : (
+                            <Menu size={36} onClick={() => setMenuOpen(!menuOpen)}
+                                className="menuIcon  hover:text-purple-400 m-5 cursor-pointer" />
+                        )
+                    }
+
                 </div>
             </div >
-            <div className={`text-white border-b-1  border-purple-900 bg-black transition-all duration-500 overflow-hiddenmd:hidden text-center overflow-hidden group-hover:text-black md:p-5
-                 ${menuOpen ? "flex flex-col" : "hidden"}`}>
+            <div className={`text-white border-b-1  border-purple-900 bg-black fixed w-full transition-all duration-500 overflow-hidden md:hidden text-center group-hover:text-black
+                 ${menuOpen ? "top-[8%]" : "-top-[15%]"}`}>
                 <Link href={`/`} onClick={() => { setMenuOpen(!menuOpen) }}>
                     <p className="text-xl text-gray-400 m-2 mt-6 transition-all duration-200 hover:text-purple-400">Home</p>
                 </Link>
