@@ -117,6 +117,7 @@ export default function Home() {
             }),
         });
         const resData = await response.json();
+        console.log(resData);
     }
 
 
@@ -173,7 +174,8 @@ export default function Home() {
                 setAttempts(attempts + 1)
                 if (attempts == 2) {
                     if (besttreak > 1) {
-                        sendRecord(username ? username : "guest", besttreak)
+                        sendRecord(username ? username : "guest", besttreak);
+                        setTimeout(()=>{console.log("sending")},1000)
                     }
                     setShowPopup(true);
                     setIsError(true);
