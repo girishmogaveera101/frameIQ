@@ -33,7 +33,7 @@ function scoreBoard() {
     <div className=' md:w-[15%] w-[80%] ml-[10%] mb-30 md:ml-[5%] md:mb-30 md:mt-10 p-4 shadow-black overflow-hidden h-100 bg-black rounded-2xl shadow-2xl'>
       <p className="text-center h-[10%] text-red-500 font-extrabold text-2xl md:text-2xl">Leaderboard</p>
       
-      <div className="overflow-scroll h-[10%] w-full">
+      <div className="h-[10%] w-full">
         <div className="text-gray-900 flex flex-row justify-between">
           <p className="text-purple-400 font-extrabold md:text-2xl text-xl w-[25%] mb-5">Rank</p>
           <p className="text-purple-400 font-extrabold md:text-2xl text-xl w-[45%] text-left">Username</p>
