@@ -9,7 +9,7 @@ export async function GET() {
 
         const highrecord = await db.collection("scoreboard")
         .find()
-        .sort({ record: -1 }) // << switch from score to record
+        .sort({ record: -1 }) 
         .limit(3)
         .toArray();
 

@@ -38,6 +38,8 @@ export default function Home() {
     const [username, setUsername] = useState<string | null>(null);
 
     const [highestRecord, setHighestRecord] = useState<number>(0);
+    const [highestRecordHolder, setHighestRecordHolder] = useState<string>("");
+
     useEffect(() => {
         const user = Cookies.get('username');
         setUsername(user ?? null)
@@ -47,6 +49,8 @@ export default function Home() {
             const resData = await response.json();
             console.log(resData);
             setHighestRecord(resData.highrecord[0]?.record)
+            setHighestRecordHolder(resData.highrecord[0]?.username)
+
 
         }
         getHighestRecord()
@@ -260,20 +264,20 @@ export default function Home() {
                     <div className=" md:w-[70%] mt-5 w-full flex flex-col md:border-2 border-1 border-gray-800 md:border-purple-700 shadow-2xl shadow-black  rounded-[30px] bg-black md:ml-[2%] md:h-110 p-3">
                         <p className="text-center text-purple-400 md:text-purple-700 md:border-b-0 md:text-4xl md:mt-3 md:pb-7 pb-3 border-[rgb(183,0,255)] text-2xl font-extrabold">Game Statistics</p>
                         <div className="flex flex-row mt-3">
-                            <p className="w-[60%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Attempts</p>
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{attempts}/3</p>
+                            <p className="w-[50%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Attempts</p>
+                            <p className="w-[50%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{attempts}/3</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[60%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Current Streak</p>
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{streak}</p>
+                            <p className="w-[50%] text-1xl  md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Current Streak</p>
+                            <p className="w-[50%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{streak}</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Your Record</p>
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{besttreak}</p>
+                            <p className="w-[50%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Your Record</p>
+                            <p className="w-[50%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{besttreak}</p>
                         </div>
                         <div className="flex flex-row m-2">
-                            <p className="w-[60%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Highest record</p>
-                            <p className="w-[40%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{highestRecord}</p>
+                            <p className="w-[50%] text-1xl md:text-2xl md:text-purple-300 md:m-4 font-extrabold text-right">Highest record</p>
+                            <p className="w-[50%] text-1xl md:text-2xl md:text-purple-300 md:m-4  font-extrabold ml-5 text-left">{highestRecord} by @{highestRecordHolder}</p>
                         </div>
 
                     </div>
