@@ -119,7 +119,7 @@ export default function navbar() {
                 </div>
             </div >
             <div className={`text-white border-b-1  border-purple-900 bg-black fixed w-full transition-all duration-500 ease-in-out md:hidden text-center group-hover:text-black
-                 ${menuOpen ? "top-[8%]" : "-top-[20%]"}`}>
+                 ${menuOpen ? "top-[8%]" : "-top-[30%]"}`}>
                 <Link href={`/`} onClick={() => { setMenuOpen(!menuOpen) }}>
                     <p className="text-xl text-gray-400 m-7 mt-10 transition-all duration-200 hover:text-purple-400">Home</p>
                 </Link>
