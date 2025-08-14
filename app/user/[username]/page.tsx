@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation';
 import Navbar from '../../components/navbar';
 import { useRouter } from 'next/navigation'
+import PopUp from '../../components/popup'
 
 
 interface UserDetailstype {
@@ -28,6 +29,19 @@ export default function ProductPage() {
   const [bio, setBio] = useState<string>("");
   const [profilePic, setProfilePic] = useState<number>(0)
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [isError, setIsError] = useState<boolean>(true)
+  const [notifMsg, setNotifMsg] = useState<string>("")
+
+  const triggerPopup = (isError: boolean, msg: string) => {
+    setIsError(isError);
+    setNotifMsg(msg);
+    setShowPopup(true);
+
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
+  };
 
   const images = Array.from({ length: 18 }, (_, i) => i + 1);
 
@@ -51,7 +65,7 @@ export default function ProductPage() {
     setPhone(resData?.phone);
     setBio(resData?.bio);
     setProfilePic(resData?.profilepic)
-    console.log(resData);
+    // console.log(res.status);
   }
 
 
@@ -76,14 +90,18 @@ export default function ProductPage() {
         profilepic: profilePic
       })
     });
-    const resData = await res.json();
-    console.log(resData);
+    if(res.status==200){
+      triggerPopup(false, "Profile Updated!!");
+    }
     fetchProfileData();
   }
 
 
   return (
     <>
+      {showPopup && (
+        <PopUp errorStatus={isError} msg={notifMsg} />
+      )}
       <Navbar />
 
 
