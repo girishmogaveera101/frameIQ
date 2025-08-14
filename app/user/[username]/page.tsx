@@ -93,6 +93,9 @@ export default function ProductPage() {
     if(res.status==200){
       triggerPopup(false, "Profile Updated!!");
     }
+    else{
+      triggerPopup(true, "Error!!");
+    }
     fetchProfileData();
   }
 

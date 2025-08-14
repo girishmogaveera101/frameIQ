@@ -75,7 +75,7 @@ function page() {
                         <p className="md:text-5xl mb-5 md:mb-0 text-3xl text-purple-400 font-extrabold">login</p>
                         <div className="flex flex-row m-5 border-0 md:mt-15">
                             <p className="w-[50%] text-right">username</p>
-                            <input type="text" value={username} onChange={(e) => { setUsername(e.target.value) }}
+                            <input type="text" value={username} onChange={(e) => { setUsername(e.target.value.toLowerCase()) }}
                                 className="border-l-1 border-purple-400 w-[50%] ml-5 pl-2 focus:outline-0"
                                 placeholder='astroidblaster69' required />
                         </div>

@@ -145,7 +145,7 @@ export default function Home() {
     const checkAnswer = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (attempts < 3) {
-            if (movieTitle == movie?.title) {
+            if (movieTitle.toLowerCase() == movie?.title.toLocaleLowerCase()) {
                 const newRight = totalRight + 1;
                 const newstreak = streak + 1;
 
