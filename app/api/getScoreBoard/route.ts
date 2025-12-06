@@ -10,7 +10,7 @@ export async function GET() {
         const highrecord = await db.collection("scoreboard")
         .find()
         .sort({ record: -1 }) // << switch from score to record
-        .limit(20)
+        .limit(10)
         .toArray();
 
         return NextResponse.json({ highrecord }, { status: 200 });

@@ -7,6 +7,7 @@ import ScoreBoard from './components/scoreBoard'
 
 export default function Home() {
 
+  
   return (
     <div>
       <Navbar />
